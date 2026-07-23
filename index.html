@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>银行业每日复盘</title>
+<title>每日复盘报告</title>
 <style>
 :root {
-  --bg-header: #1a2332; --gold: #c9a962; --bank-blue: #1565c0;
+  --bg-header: #1a2332; --gold: #c9a962; --bank-blue: #1565c0; --citic-red: #8b1a1a;
   --bg-body: #f0f2f5; --bg-card: #fff; --text-primary: #1a202c; --text-secondary: #4a5568;
   --shadow-md: 0 4px 12px rgba(0,0,0,0.1); --radius-md: 10px;
 }
@@ -19,58 +19,60 @@ body { background:var(--bg-body); font-family:"Microsoft YaHei","PingFang SC",sa
 .top-header h1 { font-size:32px; letter-spacing:4px; margin-bottom:8px; }
 .top-header .sub { color:#b0bec5; font-size:14px; letter-spacing:2px; }
 .container { max-width:900px; margin:0 auto; padding:24px; }
-.review-list { display:flex; flex-direction:column; gap:12px; margin-top:24px; }
+.section-label { font-size:13px; color:var(--text-secondary); margin:28px 0 8px; padding:6px 14px; display:inline-block; border-radius:4px; letter-spacing:2px; }
+.section-label.bank { background:#e3f2fd; color:var(--bank-blue); border-left:3px solid var(--bank-blue); }
+.section-label.market { background:#fce4ec; color:var(--citic-red); border-left:3px solid var(--citic-red); }
+.review-list { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; }
 .review-card {
   background:var(--bg-card); border-radius:var(--radius-md); box-shadow:var(--shadow-md);
   padding:22px 28px; display:flex; align-items:center; justify-content:space-between;
   transition:all 0.2s; border-left:5px solid var(--bank-blue); text-decoration:none; color:inherit;
 }
+.review-card.market { border-left-color: var(--citic-red); }
 .review-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.15); }
 .review-card .date { font-size:20px; font-weight:700; }
 .review-card .label { font-size:13px; color:var(--text-secondary); }
-.review-card .arrow { font-size:24px; color:var(--bank-blue); }
-.empty-state { text-align:center; padding:60px 20px; color:var(--text-secondary); }
-.empty-state i { font-size:64px; color:#ccc; margin-bottom:16px; display:block; }
+.review-card .arrow { font-size:24px; }
+.review-card.bank .arrow { color:var(--bank-blue); }
+.review-card.market .arrow { color:var(--citic-red); }
 .footer { text-align:center; padding:32px; color:#8899aa; font-size:12px; margin-top:48px; border-top:1px solid #e2e8f0; }
 </style>
 </head>
 <body>
 <header class="top-header">
-  <h1>🏦 银行业每日复盘</h1>
-  <div class="sub">A-Share Banking Sector Daily Review</div>
+  <h1>📊 每日复盘报告</h1>
+  <div class="sub">Daily Market Review Reports</div>
 </header>
 <div class="container">
-  <h2 style="margin-bottom:4px;">📅 复盘列表</h2>
-  <p style="color:var(--text-secondary);font-size:14px;">点击日期查看当日完整银行板块复盘报告</p>
-  <div class="review-list" id="reviewList">
-    <!-- 动态生成 -->
-  </div>
-  <div class="empty-state" id="emptyState" style="display:none;">
-    <i>📭</i>
-    <p>暂无复盘报告</p>
-  </div>
+  <div class="section-label market">🏛️ A股全市场复盘</div>
+  <div class="review-list" id="marketList"></div>
+  <div class="section-label bank">🏦 银行业深度复盘</div>
+  <div class="review-list" id="bankList"></div>
 </div>
 <footer class="footer">
-  <p>数据来源：东方财富Choice · 妙想金融终端 | 覆盖42家A股上市银行</p>
-  <p style="margin-top:4px;">© 2026 Banking Sector Daily Review</p>
+  <p>数据来源：东方财富Choice · 妙想金融终端 · Wind · 央行官网</p>
+  <p>免责声明：本报告仅供投资研究参考，不构成投资建议。</p>
+  <p style="margin-top:4px;">© 2026 Daily Review Reports | Powered by Claude Code</p>
 </footer>
 <script>
-// Auto-discover available review files (hardcoded for static hosting - update when adding new files)
-const reviews = [
-  { date: '2026-07-22', file: '2026-07-22_银行业每日复盘.html', label: '周三 · 银行板块+1.14% · 33只收红' },
+const marketReviews = [
+  { date: '2026-07-22', file: '2026-07-22_A股市场每日复盘.html', label: '周三 · 全市场30行业 + 宏观政策 + 海外 + 基金推荐' },
 ];
-const list = document.getElementById('reviewList');
-if (reviews.length === 0) {
-  document.getElementById('emptyState').style.display = 'block';
-} else {
-  reviews.forEach(r => {
+const bankReviews = [
+  { date: '2026-07-22', file: '2026-07-22_银行业每日复盘.html', label: '周三 · 银行板块+1.14% · 33只收红 · 42只逐股分析' },
+];
+function render(list, containerId, cardClass) {
+  const container = document.getElementById(containerId);
+  list.forEach(r => {
     const a = document.createElement('a');
-    a.className = 'review-card';
+    a.className = 'review-card ' + cardClass;
     a.href = r.file;
     a.innerHTML = `<div><div class="date">${r.date}</div><div class="label">${r.label}</div></div><div class="arrow">→</div>`;
-    list.appendChild(a);
+    container.appendChild(a);
   });
 }
+render(marketReviews, 'marketList', 'market');
+render(bankReviews, 'bankList', 'bank');
 </script>
 </body>
 </html>
