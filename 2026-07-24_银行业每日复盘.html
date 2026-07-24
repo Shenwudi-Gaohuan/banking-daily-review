@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>银行业每日复盘 — 2026年7月24日</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============ CSS Variables ============ */
+:root {
+  --citic-red: #8b1a1a; --citic-red-light: #c62828; --citic-red-dark: #5c1010;
+  --up-color: #cf2e2e; --down-color: #2e7d32; --flat-color: #757575;
+  --bg-body: #f0f2f5; --bg-card: #ffffff; --bg-header: #1a2332; --bg-nav: #ffffff;
+  --text-primary: #1a202c; --text-secondary: #4a5568; --text-muted: #a0aec0;
+  --border-color: #e2e8f0; --gold: #c9a962;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08); --shadow-md: 0 4px 12px rgba(0,0,0,0.1); --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+  --font-heading: "Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;
+  --font-body: "Microsoft YaHei","SimSun","Noto Serif SC",serif;
+  --font-data: "Consolas","Courier New",monospace;
+  --bank-blue: #1565c0; --bank-blue-light: #1e88e5; --bank-blue-dark: #0d47a1;
+  --state-bank: #1a5276; --joint-bank: #117a65; --city-bank: #b9770e; --rural-bank: #7d3c98;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg-body); font-family: var(--font-body); color: var(--text-primary); line-height: 1.8; font-size: 15px; }
+a { color: var(--citic-red); text-decoration: none; }
+
+/* ============ Header ============ */
+.top-header {
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 30%, #1a2332 60%, #2d3a4a 100%);
+  color: #fff; padding: 40px 0 28px; text-align: center;
+  border-bottom: 4px solid var(--gold); position: relative; overflow: hidden;
+}
+.top-header::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(201,169,98,0.08) 0%, transparent 70%),
+              radial-gradient(ellipse at 70% 50%, rgba(21,101,192,0.06) 0%, transparent 70%);
+}
+.top-header h1 { font-family: var(--font-heading); font-size: 30px; letter-spacing: 4px; margin-bottom: 6px; font-weight: 700; position: relative; }
+.top-header .subtitle { font-size: 14px; color: #b0bec5; letter-spacing: 2px; position: relative; }
+.top-header .date-badge { display: inline-block; margin-top: 12px; background: var(--bank-blue); color: #fff; padding: 6px 22px; border-radius: 20px; font-size: 13px; letter-spacing: 2px; position: relative; }
+.top-header .meta-row { margin-top: 10px; font-size: 12px; color: #8899aa; letter-spacing: 1px; position: relative; }
+
+/* ============ Navigation ============ */
+.nav-bar {
+  position: sticky; top: 0; z-index: 1000; background: var(--bg-nav);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); border-bottom: 2px solid var(--bank-blue);
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 2px; padding: 0 12px;
+}
+.nav-bar a {
+  display: inline-block; padding: 13px 15px; font-size: 13px; font-family: var(--font-heading);
+  color: var(--text-secondary); transition: all 0.2s; border-bottom: 2px solid transparent;
+  white-space: nowrap; cursor: pointer;
+}
+.nav-bar a:hover, .nav-bar a.active { color: var(--bank-blue); border-bottom-color: var(--bank-blue); font-weight: 600; }
+
+/* ============ Container ============ */
+.container { max-width: 1260px; margin: 0 auto; padding: 20px 24px; }
+
+/* ============ Section Titles ============ */
+.section-title {
+  font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--bg-header);
+  margin: 40px 0 20px; padding-left: 16px; border-left: 5px solid var(--bank-blue);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title i { color: var(--gold); font-size: 20px; }
+.section-title .badge { font-size: 13px; background: var(--bank-blue); color: #fff; padding: 3px 12px; border-radius: 12px; margin-left: 8px; font-weight: 400; }
+
+/* ============ Hero Cards ============ */
+.hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.hero-card {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 18px 20px; text-align: center; transition: all 0.2s; border-top: 3px solid transparent;
+}
+.hero-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.hero-card.up { border-top-color: var(--up-color); }
+.hero-card.down { border-top-color: var(--down-color); }
+.hero-card.blue { border-top-color: var(--bank-blue); }
+.hero-card .name { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 1px; }
+.hero-card .price { font-size: 22px; font-weight: 700; font-family: var(--font-data); margin: 6px 0; }
+.hero-card .change { font-size: 16px; font-weight: 600; }
+.hero-card .change.up { color: var(--up-color); }
+.hero-card .change.down { color: var(--down-color); }
+.hero-card .sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+/* ============ Summary Bar ============ */
+.summary-bar {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 18px 24px; margin-bottom: 20px; display: flex; flex-wrap: wrap;
+  justify-content: space-around; gap: 12px; font-size: 14px; color: var(--text-secondary);
+}
+.summary-bar span { font-weight: 600; color: var(--text-primary); }
+.summary-bar .tag { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 12px; }
+.summary-bar .tag.up { background: #ffebee; color: var(--up-color); }
+.summary-bar .tag.down { background: #e8f5e9; color: var(--down-color); }
+
+/* ============ Sub-sector Cards ============ */
+.subsector-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
+@media (max-width: 768px) { .subsector-grid { grid-template-columns: repeat(2, 1fr); } }
+.subsector-card {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 20px; text-align: center; border-left: 4px solid transparent; transition: all 0.2s;
+}
+.subsector-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.subsector-card.state { border-left-color: var(--state-bank); }
+.subsector-card.joint { border-left-color: var(--joint-bank); }
+.subsector-card.city { border-left-color: var(--city-bank); }
+.subsector-card.rural { border-left-color: var(--rural-bank); }
+.subsector-card .label { font-size: 13px; color: var(--text-muted); letter-spacing: 1px; }
+.subsector-card .value { font-size: 24px; font-weight: 700; font-family: var(--font-data); margin: 6px 0; }
+.subsector-card .detail { font-size: 12px; color: var(--text-secondary); }
+
+/* ============ Tables ============ */
+.table-wrap { overflow-x: auto; margin-bottom: 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.stock-table {
+  width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-card);
+}
+.stock-table thead th {
+  background: linear-gradient(135deg, #1a2332, #2d3a4a); color: #fff; padding: 12px 10px;
+  text-align: center; font-family: var(--font-heading); font-weight: 600; font-size: 12px;
+  position: sticky; top: 0; white-space: nowrap;
+}
+.stock-table thead th.sub-header { background: #37474f; font-size: 11px; font-weight: 500; }
+.stock-table tbody td {
+  padding: 9px 8px; text-align: center; border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-data); font-size: 12px;
+}
+.stock-table tbody tr:hover { background: #f5f7fa; }
+.stock-table tbody tr:nth-child(even) { background: #fafbfc; }
+.stock-table tbody tr:nth-child(even):hover { background: #f0f2f5; }
+.stock-table .up { color: var(--up-color); font-weight: 600; }
+.stock-table .down { color: var(--down-color); font-weight: 600; }
+.stock-table .name-col { font-family: var(--font-heading); font-weight: 600; text-align: left; color: var(--text-primary); }
+.stock-table .code-col { color: var(--text-muted); font-size: 11px; }
+.stock-table .highlight-row { background: #fff8e1 !important; }
+
+/* ============ News Cards ============ */
+.news-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.news-card {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 16px 20px; border-left: 4px solid var(--bank-blue); transition: all 0.15s;
+}
+.news-card:hover { box-shadow: var(--shadow-md); }
+.news-card.policy { border-left-color: #c62828; }
+.news-card.macro { border-left-color: #1565c0; }
+.news-card.bond { border-left-color: #2e7d32; }
+.news-card .news-title { font-family: var(--font-heading); font-size: 15px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+.news-card .news-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+.news-card .news-meta i { margin-right: 4px; }
+.news-card .news-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+.news-card .news-tag { display: inline-block; padding: 1px 8px; border-radius: 8px; font-size: 10px; margin-right: 4px; color: #fff; }
+.news-card .news-tag.hot { background: #c62828; }
+.news-card .news-tag.new { background: #1565c0; }
+.news-card .news-tag.key { background: #e65100; }
+
+/* ============ Macro Grid ============ */
+.macro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.macro-item {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+}
+.macro-item .macro-icon { font-size: 28px; width: 44px; text-align: center; }
+.macro-item .macro-info .macro-label { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+.macro-item .macro-info .macro-value { font-size: 20px; font-weight: 700; font-family: var(--font-data); }
+.macro-item .macro-info .macro-note { font-size: 11px; color: var(--text-secondary); }
+
+/* ============ Recommendation Cards ============ */
+.rec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.rec-card {
+  background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  padding: 24px; border-top: 5px solid var(--gold); transition: all 0.2s;
+}
+.rec-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.rec-card .rec-rank { font-size: 36px; font-weight: 700; color: var(--gold); font-family: var(--font-heading); }
+.rec-card .rec-name { font-family: var(--font-heading); font-size: 18px; font-weight: 700; margin: 6px 0; }
+.rec-card .rec-code { font-size: 12px; color: var(--text-muted); }
+.rec-card .rec-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 14px 0; }
+.rec-card .rec-metric { text-align: center; padding: 8px; background: #f8f9fa; border-radius: var(--radius-sm); }
+.rec-card .rec-metric .rval { font-size: 18px; font-weight: 700; font-family: var(--font-data); }
+.rec-card .rec-metric .rlbl { font-size: 10px; color: var(--text-muted); }
+.rec-card .rec-reason { font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+.rec-card .rec-reason li { margin-bottom: 6px; }
+.rec-card .rec-reason li i { color: var(--gold); margin-right: 6px; }
+
+/* ============ Sub-sector Summary ============ */
+.sub-summary {
+  background: linear-gradient(135deg, #f8f9fa, #fff); border-radius: var(--radius-md);
+  padding: 20px 24px; margin-bottom: 16px; border: 1px solid var(--border-color);
+  font-size: 14px; color: var(--text-secondary); line-height: 1.9;
+}
+.sub-summary strong { color: var(--text-primary); }
+.sub-summary i { color: var(--bank-blue); margin-right: 4px; }
+
+/* ============ Analyst Commentary ============ */
+.analyst-box {
+  background: linear-gradient(135deg, #fff8e1, #fff3e0); border-radius: var(--radius-md);
+  padding: 20px 24px; margin: 20px 0; border-left: 4px solid var(--gold);
+}
+.analyst-box .analyst-title { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: #5c3d00; margin-bottom: 10px; }
+.analyst-box .analyst-text { font-size: 14px; color: #6b4c00; line-height: 1.9; }
+
+/* ============ Footer ============ */
+.page-footer {
+  background: var(--bg-header); color: #8899aa; text-align: center; padding: 24px;
+  margin-top: 48px; font-size: 12px; letter-spacing: 1px; border-top: 3px solid var(--gold);
+}
+.page-footer a { color: var(--gold); }
+
+/* ============ Back to Top ============ */
+#back-to-top {
+  position: fixed; bottom: 30px; right: 30px; z-index: 999;
+  width: 44px; height: 44px; border-radius: 50%; background: var(--bank-blue); color: #fff;
+  border: none; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-md);
+  transition: all 0.2s; display: none; align-items: center; justify-content: center;
+}
+#back-to-top:hover { background: var(--bank-blue-dark); transform: translateY(-2px); }
+#back-to-top.show { display: flex; }
+
+/* ============ Responsive ============ */
+@media (max-width: 768px) {
+  .nav-bar { overflow-x: auto; justify-content: flex-start; flex-wrap: nowrap; }
+  .nav-bar a { padding: 10px 12px; font-size: 11px; }
+  .hero-grid { grid-template-columns: repeat(2, 1fr); }
+  .stock-table { font-size: 11px; }
+  .stock-table thead th, .stock-table tbody td { padding: 6px 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="top-header">
+  <h1><i class="fa-solid fa-building-columns"></i> 银行业每日复盘</h1>
+  <div class="subtitle">A-Share Banking Sector Daily Review</div>
+  <div class="date-badge"><i class="fa-regular fa-calendar"></i> 2026年7月24日（周五）</div>
+  <div class="meta-row">数据来源：东方财富Choice · 妙想金融终端 · Wind | 共覆盖42家A股上市银行</div>
+</header>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav-bar" id="navbar">
+  <a href="#overview" class="active"><i class="fa-solid fa-chart-pie"></i> 板块总览</a>
+  <a href="#industry-compare"><i class="fa-solid fa-table"></i> 行业对照</a>
+  <a href="#macro"><i class="fa-solid fa-globe"></i> 宏观固收</a>
+  <a href="#state-banks"><i class="fa-solid fa-star"></i> 国有行</a>
+  <a href="#joint-banks"><i class="fa-solid fa-building"></i> 股份行</a>
+  <a href="#city-banks"><i class="fa-solid fa-city"></i> 城商行</a>
+  <a href="#rural-banks"><i class="fa-solid fa-tree"></i> 农商行</a>
+  <a href="#recommend"><i class="fa-solid fa-thumbs-up"></i> 个股推荐</a>
+</nav>
+
+<div class="container">
+
+<!-- ================================================================ -->
+<!-- SECTION 1: 银行板块总览 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="overview">
+  <i class="fa-solid fa-chart-pie"></i> 一、银行板块总览
+  <span class="badge">Market Overview</span>
+</h2>
+
+<!-- Hero Cards -->
+<div class="hero-grid">
+  <div class="hero-card blue">
+    <div class="name">中证银行指数 (399986)</div>
+    <div class="price">6,914.56</div>
+    <div class="change up"><i class="fa-solid fa-arrow-up"></i> +0.31%</div>
+    <div class="sub">申万28行业中唯一上涨板块</div>
+  </div>
+  <div class="hero-card up">
+    <div class="name">申万银行指数 (801780)</div>
+    <div class="price">—</div>
+    <div class="change up"><i class="fa-solid fa-arrow-up"></i> 逆市收红</div>
+    <div class="sub">全市场超4300股下跌中独涨</div>
+  </div>
+  <div class="hero-card up">
+    <div class="name">银行板块成交额</div>
+    <div class="price">275.40亿</div>
+    <div class="change up">申万银行(合计)</div>
+    <div class="sub">国有行101.3亿 | 股份行102.3亿</div>
+  </div>
+  <div class="hero-card down">
+    <div class="name">板块主力资金</div>
+    <div class="price">-10.27亿</div>
+    <div class="change down">主力净流出</div>
+    <div class="sub">超大单流出71.9亿 | 大单流入61.6亿</div>
+  </div>
+  <div class="hero-card blue">
+    <div class="name">银行ETF (512800)</div>
+    <div class="price">0.804</div>
+    <div class="change up"><i class="fa-solid fa-arrow-up"></i> +0.12%</div>
+    <div class="sub">规模144.2亿份 | 主力净流出-7692万</div>
+  </div>
+  <div class="hero-card down">
+    <div class="name">行业市净率（整体）</div>
+    <div class="price">全面破净</div>
+    <div class="change down">0.27×–0.91×</div>
+    <div class="sub">42家A股上市银行PB<1</div>
+  </div>
+</div>
+
+<!-- Summary Bar -->
+<div class="summary-bar">
+  <div><i class="fa-solid fa-calendar-week"></i> 过去一周(7/17-7/24)银行板块走势：<br>
+    <span>7/17 <span class="tag up">+0.83%</span> → 7/20 <span class="tag up">+2.31%</span> → 7/21 <span class="tag down">-2.16%</span> → 7/22 <span class="tag up">+1.13%</span> → 7/23 <span class="tag up">+0.55%</span> → 7/24 <span class="tag up">+0.31%</span></span>
+  </div>
+  <div><i class="fa-solid fa-chart-line"></i> 本周累计表现：<br>
+    <span>中证银行指数本周 <span style="color:#cf2e2e">+2.07%</span>，七月以来持续走强</span>
+  </div>
+  <div><i class="fa-solid fa-flag"></i> 板块特征：<br>
+    <span>全市场唯红 · 大行领涨 · 高股息防御 · 宽基ETF回流 · MLF净投放</span>
+  </div>
+</div>
+
+<!-- Sub-sector Grid -->
+<div class="subsector-grid">
+  <div class="subsector-card state">
+    <div class="label"><i class="fa-solid fa-star"></i> 国有大型银行Ⅱ</div>
+    <div class="value up">+0.84%</div>
+    <div class="detail">成交额 101.3亿 | 流通市值加权 +0.87%</div>
+  </div>
+  <div class="subsector-card joint">
+    <div class="label"><i class="fa-solid fa-building"></i> 股份制银行Ⅱ</div>
+    <div class="value up">+0.32%</div>
+    <div class="detail">成交额 102.3亿 | 流通市值加权 +0.36%</div>
+  </div>
+  <div class="subsector-card city">
+    <div class="label"><i class="fa-solid fa-city"></i> 城商行Ⅱ</div>
+    <div class="value down">-0.11%</div>
+    <div class="detail">成交额 56.55亿 | 流通市值加权 -0.12%</div>
+  </div>
+  <div class="subsector-card rural">
+    <div class="label"><i class="fa-solid fa-tree"></i> 农商行Ⅱ</div>
+    <div class="value down">-0.66%</div>
+    <div class="detail">成交额 15.35亿 | 流通市值加权 -0.63%</div>
+  </div>
+</div>
+
+<p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.9;">
+<strong>当日复盘：</strong>7月24日A股市场遭遇系统性回调，三大指数集体走低，全市场超4300只个股下跌。在此背景下，银行板块再度展现出强大的防御属性，中证银行指数全天震荡上行，最终收涨<strong style="color:#cf2e2e;">+0.31%</strong>，成为申万28个一级行业中<strong>唯一上涨板块</strong>，呈现「万绿丛中一点红」的格局。从内部结构看，国有大行以<strong style="color:#cf2e2e;">+0.84%</strong>领跑，股份行微涨<strong style="color:#cf2e2e;">+0.32%</strong>，城商行（<strong style="color:#2e7d32;">-0.11%</strong>）和农商行（<strong style="color:#2e7d32;">-0.66%</strong>）收跌，呈现「大行强、小行弱」的显著分化。消息面上，央行今日开展5000亿元1年期MLF操作（7月27日到期4000亿），净投放1000亿元，叠加买断式逆回购净投放7000亿元，当月中期流动性合计净投放达<strong>8000亿元</strong>。从资金面看，全板块主力净流出约10.27亿元，超大单减仓是主要拖累，但中小单净流入显示散户仍在承接。近期多家券商（东方/平安/东兴/银河/长江）一致看好银行板块下半年估值修复行情，核心逻辑为基金低仓位+宽基ETF回流+高股息溢价+净息差企稳。
+</p>
+
+<!-- ================================================================ -->
+<!-- SECTION 2: 行业对照 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="industry-compare">
+  <i class="fa-solid fa-table"></i> 二、行业板块对照
+  <span class="badge">Cross-Industry</span>
+</h2>
+
+<p style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;line-height:1.9;">
+<strong>7月24日申万一级行业表现综述：</strong>当日A股市场遭遇普跌格局，28个申万一级行业<strong>全线下跌仅银行收红</strong>。市场呈现出典型的「价值防御、成长承压」特征——有色金属（<strong style="color:#2e7d32;">-4.71%</strong>）、计算机（<strong style="color:#2e7d32;">-3.66%</strong>）、传媒（<strong style="color:#2e7d32;">-3.55%</strong>）等前期热门的科技成长板块在风险偏好回落中首当其冲。银行板块以<strong style="color:#cf2e2e;">+0.31%</strong>的绝对优势位列涨幅榜第一，是当日最抗跌的"避风港"。电子（-0.76%）、食品饮料（-1.01%）跌幅相对较小。银行股兼具高股息（~4.5%）与低估值（PB 0.65x）双重优势，在利率下行环境下配置价值凸显——平均预期股息率较10年期国债收益率溢价275bp。以下为28个申万一级行业7月24日涨跌幅排名：
+</p>
+
+<div class="table-wrap">
+<table class="stock-table">
+<thead>
+<tr>
+  <th>排名</th><th>行业板块</th><th>所属大类</th><th>涨跌幅</th>
+  <th>排名</th><th>行业板块</th><th>所属大类</th><th>涨跌幅</th>
+</tr>
+</thead>
+<tbody>
+<tr style="background:#e3f2fd;"><td>🥇1</td><td class="name-col"><strong>🏦 银行</strong></td><td><strong>金融</strong></td><td class="up"><strong>+0.31%</strong></td><td>15</td><td class="name-col">农林牧渔</td><td>消费</td><td class="down">-2.80%</td></tr>
+<tr><td>2</td><td class="name-col">电子</td><td>TMT</td><td class="down">-0.76%</td><td>16</td><td class="name-col">钢铁</td><td>周期</td><td class="down">-2.85%</td></tr>
+<tr><td>3</td><td class="name-col">食品饮料</td><td>消费</td><td class="down">-1.01%</td><td>17</td><td class="name-col">基础化工</td><td>周期</td><td class="down">-3.06%</td></tr>
+<tr><td>4</td><td class="name-col">家用电器</td><td>消费</td><td class="down">-1.40%</td><td>18</td><td class="name-col">通信</td><td>TMT</td><td class="down">-3.08%</td></tr>
+<tr><td>5</td><td class="name-col">纺织服饰</td><td>消费</td><td class="down">-1.41%</td><td>19</td><td class="name-col">建筑材料</td><td>周期</td><td class="down">-3.13%</td></tr>
+<tr><td>6</td><td class="name-col">交通运输</td><td>消费</td><td class="down">-1.61%</td><td>20</td><td class="name-col">煤炭</td><td>周期</td><td class="down">-3.17%</td></tr>
+<tr><td>7</td><td class="name-col">轻工制造</td><td>消费</td><td class="down">-1.98%</td><td>21</td><td class="name-col">社会服务</td><td>消费</td><td class="down">-3.26%</td></tr>
+<tr><td>8</td><td class="name-col">国防军工</td><td>制造</td><td class="down">-1.99%</td><td>22</td><td class="name-col">公用事业</td><td>制造</td><td class="down">-3.42%</td></tr>
+<tr><td>9</td><td class="name-col">建筑装饰</td><td>制造</td><td class="down">-2.05%</td><td>23</td><td class="name-col">医药生物</td><td>消费</td><td class="down">-3.52%</td></tr>
+<tr><td>10</td><td class="name-col">汽车</td><td>消费</td><td class="down">-2.08%</td><td>24</td><td class="name-col">传媒</td><td>TMT</td><td class="down">-3.55%</td></tr>
+<tr><td>11</td><td class="name-col">机械设备</td><td>制造</td><td class="down">-2.08%</td><td>25</td><td class="name-col">计算机</td><td>TMT</td><td class="down">-3.66%</td></tr>
+<tr><td>12</td><td class="name-col">非银金融</td><td>金融</td><td class="down">-2.21%</td><td>26</td><td class="name-col">有色金属</td><td>周期</td><td class="down">-4.71%</td></tr>
+<tr><td>13</td><td class="name-col">电力设备</td><td>制造</td><td class="down">-2.55%</td><td>27</td><td class="name-col">综合</td><td>其他</td><td class="down">-5.06%</td></tr>
+<tr><td>14</td><td class="name-col">房地产</td><td>其他</td><td class="down">-2.77%</td><td>28</td><td class="name-col">石油石化</td><td>周期</td><td class="down">-2.58%</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="analyst-box">
+  <div class="analyst-title"><i class="fa-solid fa-magnifying-glass-chart"></i> 行业对照分析</div>
+  <div class="analyst-text">
+    7月24日市场呈现极端的「价值防御、成长坍塌」风格特征。银行板块以<strong style="color:#cf2e2e;">+0.31%</strong>成为28个申万一级行业中唯一收红的板块。有色金属（-4.71%）、计算机（-3.66%）、传媒（-3.55%）等前期热门科技成长板块在风险偏好急剧回落中首当其冲。金融产业内部严重分化——银行（+0.31%）独涨，而非银金融（-2.21%）跟随大市下跌，体现了银行作为「类债券」资产的独特防御属性。电子（-0.76%）和食品饮料（-1.01%）跌幅相对可控。整体来看，科技板块分歧加大叠加市场风格再平衡，资金加速从高弹性成长股向低估值红利股迁移的趋势极为明显。银行板块凭借PB仅0.65倍（十年底部区间）+股息率约4.5%（较国债溢价275bp）+净息差企稳改善的三重优势，在当前「系统性下跌」环境中成为最确定的避风港。东兴证券强调Q2主动基金银行持仓已降至2018年以来最低（0.66%），降无可降；长江证券判断银行股资金面拐点已经确立，下半年将进入缓慢估值修复通道。
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 3: 宏观金融固收要闻 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="macro">
+  <i class="fa-solid fa-globe"></i> 三、宏观金融固收要闻
+  <span class="badge">Macro & Policy</span>
+</h2>
+
+<!-- 宏观数据卡片 -->
+<div class="macro-grid">
+  <div class="macro-item">
+    <div class="macro-icon">🏦</div>
+    <div class="macro-info">
+      <div class="macro-label">MLF操作（7月24日）</div>
+      <div class="macro-value">5000亿</div>
+      <div class="macro-note">净投放1000亿 | 7/27到期4000亿 | 1年期</div>
+    </div>
+  </div>
+  <div class="macro-item">
+    <div class="macro-icon">💰</div>
+    <div class="macro-info">
+      <div class="macro-label">央行7天逆回购</div>
+      <div class="macro-value">890亿</div>
+      <div class="macro-note">利率1.40% | 净回笼3615亿</div>
+    </div>
+  </div>
+  <div class="macro-item">
+    <div class="macro-icon">📊</div>
+    <div class="macro-info">
+      <div class="macro-label">Shibor隔夜</div>
+      <div class="macro-value">1.381%</div>
+      <div class="macro-note">较上日+1.6bp | 流动性充裕</div>
+    </div>
+  </div>
+  <div class="macro-item">
+    <div class="macro-icon">📋</div>
+    <div class="macro-info">
+      <div class="macro-label">LPR报价（7月）</div>
+      <div class="macro-value">1Y 3.0% / 5Y 3.5%</div>
+      <div class="macro-note">连续多月保持不变</div>
+    </div>
+  </div>
+  <div class="macro-item">
+    <div class="macro-icon">📈</div>
+    <div class="macro-info">
+      <div class="macro-label">10年国债收益率</div>
+      <div class="macro-value">1.732%</div>
+      <div class="macro-note">国债期货主力 109.3元（7/23）</div>
+    </div>
+  </div>
+  <div class="macro-item">
+    <div class="macro-icon">🏠</div>
+    <div class="macro-info">
+      <div class="macro-label">M2同比（6月）</div>
+      <div class="macro-value">8.0%</div>
+      <div class="macro-note">社融3.37万亿 | 新增贷款1.61万亿</div>
+    </div>
+  </div>
+</div>
+
+<!-- 新闻资讯 -->
+<h3 style="font-family:var(--font-heading);font-size:18px;color:var(--bg-header);margin-bottom:14px;">
+  <i class="fa-solid fa-newspaper" style="color:var(--gold);"></i> 当日宏观政策与银行业重要新闻
+</h3>
+<div class="news-list">
+
+  <div class="news-card policy">
+    <div class="news-title"><span class="news-tag hot">重磅</span> 央行开展5000亿元MLF操作，7月中期流动性净投放达8000亿元</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 09:57 · 来源：中国人民银行</div>
+    <div class="news-desc">央行公告，为保持银行体系流动性充裕，7月24日以固定数量、利率招标、多重价位中标方式开展5000亿元1年期MLF操作。7月27日将有4000亿元MLF到期，实现净投放1000亿元。叠加7月买断式逆回购已净投放7000亿元，当月央行中期流动性操作合计净投放达8000亿元。这是央行连续第3个月加量续作MLF，体现了货币政策的前瞻性和灵活性，为银行信贷扩张提供了稳定的中长期资金来源。</div>
+  </div>
+
+  <div class="news-card policy">
+    <div class="news-title"><span class="news-tag new">新规</span> 8月1日贷款新规正式落地，审批全面收紧——金规〔2026〕2号文即将执行</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 11:55 · 来源：新浪网</div>
+    <div class="news-desc">央行与金融监管总局联合下发的金规〔2026〕2号文件将于8月1日起在全国所有银行、消费金融公司等持牌机构统一执行。核心变化是审批逻辑全面升级、准入门槛大幅提高，信贷行业正式告别宽松时代。新规实行新老划断，存量贷款不受影响。此举将推动银行信贷结构优化，有利于资产质量长期改善，但短期可能对零售信贷投放形成一定压制。</div>
+  </div>
+
+  <div class="news-card policy">
+    <div class="news-title"><span class="news-tag hot">重磅</span> 央行等五部门发布《上海国际金融中心发展离岸金融行动方案》</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-23 · 来源：中国人民银行/国家外汇管理局</div>
+    <div class="news-desc">央行、发改委、金融监管总局、证监会、外汇局、上海市政府联合印发离岸金融行动方案，支持上海先行先试发展离岸金融，在更深层次、更宽领域推进金融高水平开放。方案涵盖跨境资金流动、离岸人民币业务、金融基础设施互联互通等，利好总部位于上海的银行（交通银行、浦发银行、上海银行、沪农商行等）拓展跨境金融和离岸业务。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title"><span class="news-tag key">宏观</span> 上海出台20条科技金融新政——激发直接融资功能加强科技金融服务</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 08:20 · 来源：东方财富研究中心</div>
+    <div class="news-desc">上海市委金融委员会等发布《上海市充分发挥直接融资功能进一步加强科技金融服务的若干措施》，围绕提升早期投资领投定价能力、构建股权投资接续机制、发挥资本市场枢纽作用、丰富长期资本供给和优化配套制度环境等五个方向提出20条具体举措。政策利好上海本地银行拓展科技金融业务，为银行信贷投放提供新方向。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title"><span class="news-tag key">宏观</span> 证监会召开系统座谈会：综合施策维护市场平稳运行，推动中长期资金入市</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 09:46 · 来源：巨丰投顾</div>
+    <div class="news-desc">中国证监会7月23日召开党的建设暨监管工作座谈会，强调综合施策全力维护市场平稳运行，提升资本市场韧性，更加精准有效实施逆周期调节，推动中长期资金稳步提升入市规模和比例。公募基金6月底总规模达39.67万亿元再创历史新高。这一政策信号直接利好银行板块——中长期资金偏好低估值高股息资产，银行股是核心配置方向。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title"><span class="news-tag hot">重磅</span> 东兴证券：Q2主动基金银行持仓降至历史新低1.1%，被动资金拐点已现</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 11:24 · 来源：东兴证券</div>
+    <div class="news-desc">东兴证券深度报告显示，2Q26末主动偏股基金银行重仓持股占比仅1.1%（环比降0.88pct），被动基金持仓约占银行自由流通市值3.74%（环比降1.5pct），北向资金连续第四季度减持。但7月中旬以来沪深300等宽基ETF已由净流出转为净流入，大型资金进一步减持空间有限。银行板块静态PB仅0.65倍，平均股息率约4.5%较10年期国债溢价275bp，看好下半年估值修复。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title"><span class="news-tag key">研报</span> 东方证券：26Q2银行业绩前瞻——营收利润持平，净息差企稳是超预期关键</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 07:58 · 来源：东方证券</div>
+    <div class="news-desc">东方证券指出银行仍处于存款集中重定价周期，支撑净息差有望实现阶段性、结构性企稳回升。建议关注两条主线：①基本面确定的优质中小行：宁波银行、苏州银行、杭州银行、南京银行、渝农商行（买入评级）；②防御价值突出的国有大行：工商银行、中国银行。预计2026-2027年银行业营收有望持续改善。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title"><span class="news-tag key">研报</span> 平安证券：主被动基金持仓筑底，关注反转信号——优选红利兼顾弹性</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 08:50 · 来源：平安证券</div>
+    <div class="news-desc">平安证券指出2季度主动基金银行持仓降至0.66%（2018年以来低点），低配沪深300流通市值权重19.8个百分点。被动基金2季度沪深300指数基金流出规模较1季度下降2567亿元，流出节奏放缓，7月前22天沪深300指数基金净流入121亿元。继续看好低估值高股息国有大行和股份行，重点关注成都、宁波、江苏、上海、苏州、长沙的盈利弹性。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title"><span class="news-tag hot">重磅</span> 银河证券：国新诚通增持稳预期，长线资金入市有望加速利好银行板块</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 08:15 · 来源：中国银河证券</div>
+    <div class="news-desc">中国银河证券张一纬指出，国新控股已使用股票回购增持专项再贷款及配套资金超500亿元，诚通累计买入近百亿元国资央企股票及ETF。险资一季度可用于配置银行的增量资金理论约787.9亿元，实际仅增配47.71亿元，仍有巨大配置空间。年初以来已有7家上市银行发布8次增持公告，城商行增持股东多为地方国资平台，对银行板块估值形成支撑。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title">🏦 多家上市银行成立市值管理小组，股东高管密集增持传递信心</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 11:10 · 来源：界面新闻/百家号</div>
+    <div class="news-desc">近期多家上市银行成立市值管理小组，股东和管理层密集增持——南京银行江苏交控自2025年9月至2026年7月增持超1.22亿股，中国银行已通过股票回购增持贷款产品支持151个上市公司回购增持计划。邮储银行研究员表示上市银行高管拿出"真金白银"增持，将个人利益与银行发展充分绑定，传递积极市场信号。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title">📊 惠誉上调五家全国性股份制银行评级——浦发、兴业获发行人主体评级上调</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-22 · 来源：证券日报</div>
+    <div class="news-desc">惠誉国际上调了浦发银行和兴业银行的长期发行人主体评级和生存力评级（上一次上调分别在2017年和2021年），同时上调了招商银行、中信银行和光大银行的生存力评级。惠誉表示浦发银行的规模和零售存款基础持续提升至接近评级更高同业水平，兴业银行系统重要性上升。国际评级上调有助于降低股份行的海外融资成本，增强外资配置信心。</div>
+  </div>
+
+  <div class="news-card macro">
+    <div class="news-title">📊 长江证券：银行股资金面拐点确立，下半年进入缓慢估值修复通道</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 10:00 · 来源：每日经济新闻</div>
+    <div class="news-desc">长江证券最新分析认为2026年上半年沪深300宽基指数基金净流出接近一万亿元，但7月以来减仓压力已基本出清，主动公募基金银行股持仓降至历史新低降无可降。预计从2026年下半年开始银行股将逐步缓慢进入估值修复通道，近一个月已出现两次估值触底回升，即便风格没有剧烈变化，银行股缓慢估值修复的绝对收益方向也较为明确。</div>
+  </div>
+
+  <div class="news-card bond">
+    <div class="news-title"><span class="news-tag key">固收</span> 6月社融新增3.37万亿——信贷需求偏弱但净息差阶段性企稳</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-24 09:18 · 来源：南京证券</div>
+    <div class="news-desc">南京证券银行业周报指出6月社融新增3.37万亿（同比少增8606亿），信贷新增1.61万亿（同比少增6300亿），企业端融资依赖票据冲量，居民信贷增长压力仍存。但净息差在存款集中重定价周期下实现阶段性企稳（Q1商业银行净息差1.401%），预计26年中报上市银行整体营收增速略有放缓、业绩保持稳健。</div>
+  </div>
+
+  <div class="news-card policy">
+    <div class="news-title"><span class="news-tag hot">监管</span> 金融监管总局发布严重失信主体名单管理规定，10月1日起施行</div>
+    <div class="news-meta"><i class="fa-regular fa-clock"></i> 2026-07-22 · 来源：金融监管总局</div>
+    <div class="news-desc">金融监管总局发布《关于严重失信主体名单管理的规定（试行）》，自2026年10月1日起施行。规定明确金融机构及其从业人员受到行政处罚且性质特别恶劣、情节特别严重的，列入严重失信主体名单，并建立信用修复机制。该制度将强化金融机构合规经营意识，有利于行业长期健康发展。</div>
+  </div>
+
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 4: 国有行详细分析 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="state-banks">
+  <i class="fa-solid fa-star"></i> 四、国有大型银行
+  <span class="badge">6只 · 成交101.3亿</span>
+</h2>
+
+<div class="sub-summary">
+  <i class="fa-solid fa-info-circle"></i>
+  <strong>板块小结：</strong>国有大行7月24日整体表现最为突出，子板块指数上涨<strong style="color:#cf2e2e;">+0.84%</strong>，是四个子板块中涨幅最大的板块，也是今日银行板块领涨的核心驱动力。交通银行以<strong style="color:#cf2e2e;">+1.29%</strong>领涨全板块，受益于其较低的PE（6.45倍）、最低的PB（0.53倍）以及上海离岸金融政策的催化效应。农业银行（+1.06%）紧随其后，工商银行（+0.91%）表现稳健，中国银行（+0.67%）温和上涨，邮储银行和建设银行涨幅均为+0.20%相对滞后。资金面上，农业银行是唯一获主力资金净流入（+6139万）的国有行，其余五大行均呈主力净流出状态，工商银行净流出-1.85亿最多主要受超大单卖出影响。从换手率看（均<0.9%），交投理性，整体筹码锁定良好。估值维度，国有行平均PB约0.67倍处于历史底部区间，交通银行PB最低仅0.53倍。六大国有行A股平均股息率约4.11%（截至7月17日），较10年期国债收益率溢价约237bp，H股平均股息率达5.23%。央行MLF净投放1000亿叠加买断式逆回购7000亿为国有大行信贷投放提供了充裕的中长期流动性。东方证券将工商银行、中国银行列入"基本面稳健、具备较好防御价值"的推荐标的。银河证券指出长线资金入市有望加速，国有大行作为沪深300高权重成分股将优先受益于宽基ETF资金回流。
+</div>
+
+<div class="table-wrap">
+<table class="stock-table">
+<thead>
+<tr>
+  <th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>换手率</th>
+  <th>成交额(亿)</th><th>量比</th><th>PE(TTM)</th><th>PB</th>
+  <th>总市值(亿)</th><th>主力净流入(万)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="code-col">601398</td><td class="name-col">工商银行</td><td>7.75</td><td class="up">+0.91%</td><td>0.14%</td>
+  <td>28.49</td><td>0.69</td><td>7.44</td><td>0.701</td><td>27,620</td><td class="down">-18,488</td>
+</tr>
+<tr>
+  <td class="code-col">601939</td><td class="name-col">建设银行</td><td>10.26</td><td class="up">+0.20%</td><td>0.83%</td>
+  <td>8.13</td><td>0.53</td><td>7.85</td><td>0.757</td><td>26,840</td><td class="down">-9,851</td>
+</tr>
+<tr>
+  <td class="code-col">601288</td><td class="name-col">农业银行</td><td>6.66</td><td class="up">+1.06%</td><td>0.12%</td>
+  <td>25.07</td><td>0.79</td><td>7.92</td><td>0.825</td><td>23,310</td><td class="up">+6,139</td>
+</tr>
+<tr>
+  <td class="code-col">601988</td><td class="name-col">中国银行</td><td>6.01</td><td class="up">+0.67%</td><td>0.12%</td>
+  <td>15.39</td><td>0.69</td><td>7.89</td><td>0.709</td><td>19,360</td><td class="down">-16,613</td>
+</tr>
+<tr>
+  <td class="code-col">601328</td><td class="name-col">交通银行</td><td>7.04</td><td class="up">+1.29%</td><td>0.89%</td>
+  <td>16.22</td><td>0.95</td><td>6.45</td><td>0.534</td><td>6,221</td><td class="down">-17,356</td>
+</tr>
+<tr>
+  <td class="code-col">601658</td><td class="name-col">邮储银行</td><td>5.12</td><td class="up">+0.20%</td><td>0.21%</td>
+  <td>7.95</td><td>0.88</td><td>7.00</td><td>0.596</td><td>6,149</td><td class="down">-14,983</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 5: 股份行详细分析 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="joint-banks">
+  <i class="fa-solid fa-building"></i> 五、股份制银行
+  <span class="badge">9只 · 成交102.3亿</span>
+</h2>
+
+<div class="sub-summary">
+  <i class="fa-solid fa-info-circle"></i>
+  <strong>板块小结：</strong>股份制银行7月24日小幅收涨<strong style="color:#cf2e2e;">+0.32%</strong>，成交额102.3亿元，内部个股分化显著。中信银行以<strong style="color:#cf2e2e;">+0.79%</strong>领涨，招商银行（+0.75%）紧随其后，两家均是惠誉近期上调评级的受益标的。华夏银行（+0.43%）和兴业银行（+0.38%）温和上涨。下跌个股中，民生银行以-0.85%领跌，浙商银行（-0.35%）、光大银行（-0.32%）和浦发银行（-0.11%）也小幅回调。资金面上，招商银行是唯一获主力净流入（+2619万）的股份行，其大单净流入高达+2.16亿，显示机构资金对其基本面的认可——在板块主力普遍流出的背景下尤为突出。兴业银行主力净流出最多（-2.15亿），民生银行（-7273万）和光大银行（-6859万）资金流出也较明显。估值层面，股份行整体PB处于0.27-0.87倍区间，民生银行以0.27倍PB为板块最低，招商银行以0.87倍PB为最高，体现了市场对其零售银行龙头地位和资产质量优势的估值溢价。消息面上，惠誉近期上调了五家股份行评级为板块提供了国际信用背书；招商银行作为银行ETF重仓第一股，在宽基ETF资金回流大背景下有望率先受益于资金面改善。平安证券和长江证券均将低估值高股息股份行列为重点关注方向。
+</div>
+
+<div class="table-wrap">
+<table class="stock-table">
+<thead>
+<tr>
+  <th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>换手率</th>
+  <th>成交额(亿)</th><th>量比</th><th>PE(TTM)</th><th>PB</th>
+  <th>总市值(亿)</th><th>主力净流入(万)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="highlight-row">
+  <td class="code-col">600036</td><td class="name-col">招商银行</td><td>39.20</td><td class="up">+0.75%</td><td>0.48%</td>
+  <td>38.46</td><td>0.81</td><td>6.56</td><td>0.873</td><td>9,886</td><td class="up">+2,619</td>
+</tr>
+<tr>
+  <td class="code-col">601166</td><td class="name-col">兴业银行</td><td>18.33</td><td class="up">+0.38%</td><td>0.52%</td>
+  <td>20.10</td><td>0.83</td><td>5.01</td><td>0.467</td><td>3,879</td><td class="down">-21,514</td>
+</tr>
+<tr>
+  <td class="code-col">600000</td><td class="name-col">浦发银行</td><td>9.04</td><td class="down">-0.11%</td><td>0.15%</td>
+  <td>4.59</td><td>0.59</td><td>5.99</td><td>0.399</td><td>3,011</td><td class="down">-2,344</td>
+</tr>
+<tr>
+  <td class="code-col">601998</td><td class="name-col">中信银行</td><td>7.61</td><td class="up">+0.79%</td><td>0.15%</td>
+  <td>4.81</td><td>0.86</td><td>5.95</td><td>0.570</td><td>4,235</td><td class="down">-2,945</td>
+</tr>
+<tr>
+  <td class="code-col">601818</td><td class="name-col">光大银行</td><td>3.15</td><td class="down">-0.32%</td><td>0.36%</td>
+  <td>5.30</td><td>0.66</td><td>4.92</td><td>0.369</td><td>1,861</td><td class="down">-6,859</td>
+</tr>
+<tr>
+  <td class="code-col">600016</td><td class="name-col">民生银行</td><td>3.50</td><td class="down">-0.85%</td><td>0.62%</td>
+  <td>7.77</td><td>0.60</td><td>5.22</td><td>0.266</td><td>1,532</td><td class="down">-7,273</td>
+</tr>
+<tr>
+  <td class="code-col">000001</td><td class="name-col">平安银行</td><td>11.10</td><td class="up">+0.18%</td><td>0.59%</td>
+  <td>12.69</td><td>0.87</td><td>5.00</td><td>0.464</td><td>2,154</td><td class="down">-5,838</td>
+</tr>
+<tr>
+  <td class="code-col">600015</td><td class="name-col">华夏银行</td><td>7.01</td><td class="up">+0.43%</td><td>0.54%</td>
+  <td>5.80</td><td>0.96</td><td>4.11</td><td>0.347</td><td>1,116</td><td class="down">-2,665</td>
+</tr>
+<tr>
+  <td class="code-col">601916</td><td class="name-col">浙商银行</td><td>2.87</td><td class="down">-0.35%</td><td>0.44%</td>
+  <td>2.73</td><td>0.55</td><td>6.08</td><td>0.429</td><td>788</td><td class="down">-1,654</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 6: 城商行详细分析 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="city-banks">
+  <i class="fa-solid fa-city"></i> 六、城市商业银行
+  <span class="badge">17只 · 成交56.55亿</span>
+</h2>
+
+<div class="sub-summary">
+  <i class="fa-solid fa-info-circle"></i>
+  <strong>板块小结：</strong>城商行子板块指数微跌<strong style="color:#2e7d32;">-0.11%</strong>，17只城商行中仅4只收涨、13只收跌，涨跌比约1:3。宁波银行以<strong style="color:#cf2e2e;">+0.50%</strong>的涨幅领涨城商行，当日举行投资者关系活动——管理层表态将继续实施积极的利润分配政策（2025年分红率27.99%），资产质量预计保持在行业较好水平，吸引兴全基金、中银基金等机构调研。江苏银行（+0.26%）、上海银行（+0.22%）和南京银行（+0.18%）也逆市收红，均为基本面优质、机构持仓集中的标的。下跌个股中，重庆银行以-1.36%领跌（前期涨幅较大后的技术回调），厦门银行（-1.34%）、西安银行（-1.12%）、青岛银行（-1.04%）跌幅均超1%。资金面上，17只城商行仅青岛银行获主力小幅净流入+263万，其余全部呈净流出——杭州银行（-1.52亿）、宁波银行（-1.60亿）流出居前，但需注意这两只也是机构重仓股，流出可能与被动基金调仓相关而非基本面恶化。估值维度，宁波银行以0.91倍PB居板块最高，贵阳银行以0.31倍PB为最低。成都银行PB 0.85倍、PE 5.82倍在优质城商行中性价比较高。年初以来城商行获地方国资平台增持最多，Q1有12家城商行获增持。东方证券将宁波银行、苏州银行、杭州银行、南京银行列入"买入"评级；平安证券建议重点关注成都、宁波、江苏、上海、苏州、长沙的盈利弹性。
+</div>
+
+<div class="table-wrap">
+<table class="stock-table">
+<thead>
+<tr>
+  <th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>换手率</th>
+  <th>成交额(亿)</th><th>量比</th><th>PE(TTM)</th><th>PB</th>
+  <th>总市值(亿)</th><th>主力净流入(万)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="highlight-row">
+  <td class="code-col">002142</td><td class="name-col">宁波银行</td><td>32.01</td><td class="up">+0.50%</td><td>0.55%</td>
+  <td>11.68</td><td>0.72</td><td>7.02</td><td>0.909</td><td>2,114</td><td class="down">-15,983</td>
+</tr>
+<tr>
+  <td class="code-col">600919</td><td class="name-col">江苏银行</td><td>11.57</td><td class="up">+0.26%</td><td>0.34%</td>
+  <td>7.34</td><td>0.56</td><td>6.01</td><td>0.804</td><td>2,123</td><td class="down">-8,583</td>
+</tr>
+<tr>
+  <td class="code-col">601229</td><td class="name-col">上海银行</td><td>9.14</td><td class="up">+0.22%</td><td>0.34%</td>
+  <td>4.47</td><td>0.72</td><td>5.36</td><td>0.514</td><td>1,299</td><td class="down">-2,940</td>
+</tr>
+<tr>
+  <td class="code-col">601009</td><td class="name-col">南京银行</td><td>11.26</td><td class="up">+0.18%</td><td>0.30%</td>
+  <td>4.23</td><td>0.63</td><td>6.24</td><td>0.740</td><td>1,392</td><td class="down">-4,177</td>
+</tr>
+<tr>
+  <td class="code-col">601169</td><td class="name-col">北京银行</td><td>5.06</td><td class="down">-0.59%</td><td>0.45%</td>
+  <td>4.80</td><td>0.57</td><td>5.22</td><td>0.378</td><td>1,070</td><td class="down">-3,863</td>
+</tr>
+<tr>
+  <td class="code-col">600926</td><td class="name-col">杭州银行</td><td>15.74</td><td class="down">-0.57%</td><td>0.51%</td>
+  <td>5.80</td><td>0.82</td><td>5.81</td><td>0.815</td><td>1,141</td><td class="down">-15,153</td>
+</tr>
+<tr>
+  <td class="code-col">601838</td><td class="name-col">成都银行</td><td>18.45</td><td class="down">-0.75%</td><td>0.33%</td>
+  <td>2.61</td><td>0.59</td><td>5.82</td><td>0.850</td><td>782</td><td class="down">-535</td>
+</tr>
+<tr>
+  <td class="code-col">601577</td><td class="name-col">长沙银行</td><td>9.22</td><td class="down">-0.32%</td><td>0.37%</td>
+  <td>1.38</td><td>0.61</td><td>4.50</td><td>0.503</td><td>371</td><td class="down">-174</td>
+</tr>
+<tr>
+  <td class="code-col">601997</td><td class="name-col">贵阳银行</td><td>5.54</td><td class="down">-0.54%</td><td>0.85%</td>
+  <td>1.73</td><td>0.51</td><td>3.83</td><td>0.307</td><td>203</td><td class="down">-514</td>
+</tr>
+<tr>
+  <td class="code-col">002936</td><td class="name-col">郑州银行</td><td>1.76</td><td class="down">-0.56%</td><td>1.08%</td>
+  <td>1.35</td><td>0.64</td><td>8.21</td><td>0.346</td><td>160</td><td class="down">-501</td>
+</tr>
+<tr>
+  <td class="code-col">002948</td><td class="name-col">青岛银行</td><td>5.71</td><td class="down">-1.04%</td><td>0.78%</td>
+  <td>1.57</td><td>0.62</td><td>6.09</td><td>0.781</td><td>332</td><td class="up">+263</td>
+</tr>
+<tr>
+  <td class="code-col">600928</td><td class="name-col">西安银行</td><td>3.53</td><td class="down">-1.12%</td><td>0.40%</td>
+  <td>0.62</td><td>0.59</td><td>5.82</td><td>0.437</td><td>157</td><td class="down">-987</td>
+</tr>
+<tr>
+  <td class="code-col">601187</td><td class="name-col">厦门银行</td><td>7.39</td><td class="down">-1.34%</td><td>0.48%</td>
+  <td>0.95</td><td>0.50</td><td>7.27</td><td>0.715</td><td>195</td><td class="down">-353</td>
+</tr>
+<tr>
+  <td class="code-col">601665</td><td class="name-col">齐鲁银行</td><td>6.21</td><td class="down">-0.48%</td><td>0.61%</td>
+  <td>2.32</td><td>0.63</td><td>6.47</td><td>0.756</td><td>382</td><td class="down">-492</td>
+</tr>
+<tr>
+  <td class="code-col">001227</td><td class="name-col">兰州银行</td><td>2.12</td><td class="down">-0.47%</td><td>1.61%</td>
+  <td>1.45</td><td>0.70</td><td>6.57</td><td>0.392</td><td>121</td><td class="down">-472</td>
+</tr>
+<tr>
+  <td class="code-col">601963</td><td class="name-col">重庆银行</td><td>10.92</td><td class="down">-1.36%</td><td>0.69%</td>
+  <td>1.55</td><td>0.64</td><td>6.62</td><td>0.677</td><td>396</td><td class="down">-896</td>
+</tr>
+<tr>
+  <td class="code-col">002966</td><td class="name-col">苏州银行</td><td>8.02</td><td class="down">-0.74%</td><td>0.76%</td>
+  <td>2.70</td><td>0.59</td><td>6.55</td><td>0.692</td><td>359</td><td class="down">-2,044</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 7: 农商行详细分析 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="rural-banks">
+  <i class="fa-solid fa-tree"></i> 七、农村商业银行
+  <span class="badge">10只 · 成交15.35亿</span>
+</h2>
+
+<div class="sub-summary">
+  <i class="fa-solid fa-info-circle"></i>
+  <strong>板块小结：</strong>农商行子板块指数下跌<strong style="color:#2e7d32;">-0.66%</strong>，在四类银行中跌幅最大，10只农商行全线收跌无一上涨。江阴银行以-1.01%领跌，常熟银行（-0.95%）、渝农商行（-0.90%）、瑞丰银行（-0.84%）跌幅靠前，多为前期涨幅较大的标的。沪农商行（-0.37%）和青农商行（-0.34%）跌幅相对较小，张家港行（-0.23%）表现最为抗跌。资金面上，10只农商行中有8只呈主力净流出，渝农商行主力净流出-3907万最多，沪农商行净流出-2590万紧随其后；仅瑞丰银行获主力小幅净流入+577万。估值方面，常熟银行以0.71倍PB和5.24倍PE在农商行中估值最高，体现了市场对其小微金融差异化经营优势的认可；青农商行PB仅0.44倍为板块最低。农商行弱势主要受三方面因素影响：①全市场超4300只股票下跌，小市值银行更易受流动性冲击；②农商行体量小、换手率高（苏农银行1.43%、青农商行1.30%、紫金银行1.29%），资金流出时跌幅被放大；③在「大行强、小行弱」的结构性行情中，资金更多流入低估值高股息的国有大行和优质股份行。中长期来看，东方证券将渝农商行列为重点推荐标的（买入评级），南京证券也将其与苏州银行、重庆银行并列推荐。青岛农商行在全球银行1000强排名升至第305位（较上年提升3位），基本面改善趋势明确。
+</div>
+
+<div class="table-wrap">
+<table class="stock-table">
+<thead>
+<tr>
+  <th>代码</th><th>名称</th><th>收盘价</th><th>涨跌幅</th><th>换手率</th>
+  <th>成交额(亿)</th><th>量比</th><th>PE(TTM)</th><th>PB</th>
+  <th>总市值(亿)</th><th>主力净流入(万)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="code-col">601825</td><td class="name-col">沪农商行</td><td>8.18</td><td class="down">-0.37%</td><td>0.22%</td>
+  <td>1.71</td><td>0.66</td><td>6.39</td><td>0.599</td><td>789</td><td class="down">-2,590</td>
+</tr>
+<tr>
+  <td class="code-col">002958</td><td class="name-col">青农商行</td><td>2.97</td><td class="down">-0.34%</td><td>1.30%</td>
+  <td>2.11</td><td>0.74</td><td>5.17</td><td>0.436</td><td>165</td><td class="down">-327</td>
+</tr>
+<tr>
+  <td class="code-col">002839</td><td class="name-col">张家港行</td><td>4.33</td><td class="down">-0.23%</td><td>0.78%</td>
+  <td>0.83</td><td>0.53</td><td>5.31</td><td>0.554</td><td>106</td><td class="down">-570</td>
+</tr>
+<tr>
+  <td class="code-col">603323</td><td class="name-col">苏农银行</td><td>4.19</td><td class="down">-0.48%</td><td>1.43%</td>
+  <td>1.33</td><td>0.71</td><td>4.50</td><td>0.480</td><td>93</td><td class="down">-789</td>
+</tr>
+<tr>
+  <td class="code-col">601077</td><td class="name-col">渝农商行</td><td>6.61</td><td class="down">-0.90%</td><td>0.58%</td>
+  <td>3.38</td><td>0.72</td><td>5.96</td><td>0.552</td><td>751</td><td class="down">-3,907</td>
+</tr>
+<tr>
+  <td class="code-col">600908</td><td class="name-col">无锡银行</td><td>5.38</td><td class="down">-0.74%</td><td>0.66%</td>
+  <td>0.71</td><td>0.52</td><td>5.08</td><td>0.510</td><td>118</td><td class="down">-318</td>
+</tr>
+<tr>
+  <td class="code-col">601860</td><td class="name-col">紫金银行</td><td>2.56</td><td class="down">-0.78%</td><td>1.29%</td>
+  <td>1.18</td><td>0.68</td><td>7.49</td><td>0.458</td><td>94</td><td class="down">-33</td>
+</tr>
+<tr>
+  <td class="code-col">601528</td><td class="name-col">瑞丰银行</td><td>4.75</td><td class="down">-0.84%</td><td>0.81%</td>
+  <td>0.72</td><td>0.56</td><td>4.75</td><td>0.462</td><td>93</td><td class="up">+577</td>
+</tr>
+<tr>
+  <td class="code-col">601128</td><td class="name-col">常熟银行</td><td>6.23</td><td class="down">-0.95%</td><td>1.01%</td>
+  <td>2.30</td><td>0.65</td><td>5.24</td><td>0.709</td><td>227</td><td class="down">-696</td>
+</tr>
+<tr>
+  <td class="code-col">002807</td><td class="name-col">江阴银行</td><td>3.92</td><td class="down">-1.01%</td><td>1.01%</td>
+  <td>1.07</td><td>0.51</td><td>5.16</td><td>0.532</td><td>106</td><td class="down">-1,207</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 8: 个股推荐 -->
+<!-- ================================================================ -->
+<h2 class="section-title" id="recommend">
+  <i class="fa-solid fa-thumbs-up"></i> 八、个股推荐
+  <span class="badge">Investment Ideas</span>
+</h2>
+
+<p style="font-size:14px;color:var(--text-secondary);margin-bottom:20px;line-height:1.9;">
+<strong>选股逻辑：</strong>基于当前银行板块「低估值+高股息+业绩改善预期」的核心投资主线，结合市场极端分化环境（银行唯一收红）、资金面拐点信号（宽基ETF回流+主动基金仓位见底）、估值安全边际（PE/PB分位）、基本面改善确定性（净息差企稳、资产质量改善）以及近期催化剂（MLF放量、股东增持、市值管理）等维度，综合筛选出以下3只重点推荐标的。整体策略倾向于「红利打底+优质弹性」的双轮驱动。
+</p>
+
+<div class="rec-grid">
+
+  <!-- 推荐一 -->
+  <div class="rec-card">
+    <div class="rec-rank">#1</div>
+    <div class="rec-name">招商银行 <span style="font-size:12px;color:var(--text-muted);">600036.SH</span></div>
+    <div class="rec-code">股份行 | 收盘价 39.20元 | 市值 9,886亿</div>
+    <div class="rec-metrics">
+      <div class="rec-metric"><div class="rval up">+0.75%</div><div class="rlbl">当日涨跌幅</div></div>
+      <div class="rec-metric"><div class="rval">6.56x</div><div class="rlbl">PE(TTM)</div></div>
+      <div class="rec-metric"><div class="rval">0.873x</div><div class="rlbl">市净率(板块最高)</div></div>
+      <div class="rec-metric"><div class="rval up">+2,619万</div><div class="rlbl">主力净流入</div></div>
+    </div>
+    <div class="rec-reason">
+      <strong>推荐理由：</strong>
+      <ul>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>资金面突出：</strong>今日唯一获主力净流入（+2,619万）的股份行，大单净流入高达+2.16亿，在全板块主力普遍流出的背景下独树一帜，机构认可度极高</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>国际信用背书：</strong>惠誉上调生存力评级，国际评级机构背书增强外资配置信心，有利于海外融资成本下降</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>ETF资金回流核心受益：</strong>作为银行ETF第一重仓股，沪深300宽基ETF资金回流核心受益标的，被动资金流入弹性最大</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>基本面优质：</strong>零售银行龙头地位稳固，活期存款占比领先行业，负债成本优势在利率下行周期中尤为突出，净息差企稳+财富管理转型深化</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>长期配置价值：</strong>Q2主动基金大幅减持招行，低仓位为后续回流提供空间，PB 0.87倍的估值溢价具有基本面支撑</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 推荐二 -->
+  <div class="rec-card">
+    <div class="rec-rank">#2</div>
+    <div class="rec-name">交通银行 <span style="font-size:12px;color:var(--text-muted);">601328.SH</span></div>
+    <div class="rec-code">国有行 | 收盘价 7.04元 | 市值 6,221亿</div>
+    <div class="rec-metrics">
+      <div class="rec-metric"><div class="rval up">+1.29%</div><div class="rlbl">当日涨跌幅（全板块最高）</div></div>
+      <div class="rec-metric"><div class="rval">6.45x</div><div class="rlbl">PE(TTM)</div></div>
+      <div class="rec-metric"><div class="rval">0.534x</div><div class="rlbl">市净率（国有行最低）</div></div>
+      <div class="rec-metric"><div class="rval">~5.1%</div><div class="rlbl">预期股息率</div></div>
+    </div>
+    <div class="rec-reason">
+      <strong>推荐理由：</strong>
+      <ul>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>今日领涨全板块：</strong>以+1.29%的涨幅冠绝42只银行股，量比0.95接近1.0交投活跃，市场关注度快速提升</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>估值折价最深：</strong>PB仅0.53倍为国有行最低，PE 6.45倍也为国有行最低，估值修复弹性最充足</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>政策催化剂明确：</strong>上海国际金融中心建设+离岸金融行动方案核心受益者，总部位于上海的独特地缘优势</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>股息率超5%：</strong>充分满足保险绝对收益资金的收益率要求，在险资仍有巨大配置空间的背景下是增配首选</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>流动性充裕利好：</strong>央行8000亿中期流动性净投放直接利好信贷扩张，交行作为五大行之一将优先受益</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 推荐三 -->
+  <div class="rec-card">
+    <div class="rec-rank">#3</div>
+    <div class="rec-name">宁波银行 <span style="font-size:12px;color:var(--text-muted);">002142.SZ</span></div>
+    <div class="rec-code">城商行 | 收盘价 32.01元 | 市值 2,114亿</div>
+    <div class="rec-metrics">
+      <div class="rec-metric"><div class="rval up">+0.50%</div><div class="rlbl">当日涨跌幅（城商行领涨）</div></div>
+      <div class="rec-metric"><div class="rval">7.02x</div><div class="rlbl">PE(TTM)</div></div>
+      <div class="rec-metric"><div class="rval">0.909x</div><div class="rlbl">市净率（板块最高）</div></div>
+      <div class="rec-metric"><div class="rval">27.99%</div><div class="rlbl">2025分红率</div></div>
+    </div>
+    <div class="rec-reason">
+      <strong>推荐理由：</strong>
+      <ul>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>今日城商行领涨：</strong>投资者关系活动释放积极信号——管理层明确继续实施积极分红政策，"清存控增"不良资产策略清晰</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>资产质量行业领先：</strong>不良率持续下行，拨备厚实，全流程风险管理体系成熟，是银行股中的"成长股"</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>股东回报优异：</strong>2025年每10股派12元，分红率27.99%处于行业较好水平，股东回报稳定可持续</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>PB估值溢价合理：</strong>0.91倍PB虽为板块最高，但反映市场对其优质基本面和成长性的高度认可，东方证券给予"买入"评级</li>
+        <li><i class="fa-solid fa-check-circle"></i> <strong>信贷投放高景气：</strong>聚焦民营小微、制造业、科技企业、绿色金融等领域，贷款增速持续高于行业均值</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- 组合策略建议 -->
+<div class="analyst-box">
+  <div class="analyst-title"><i class="fa-solid fa-layer-group"></i> 配置策略建议</div>
+  <div class="analyst-text">
+    <strong>「红利打底 + 优质区域弹性」双轮驱动策略：</strong><br><br>
+    <strong>核心仓位（50%）：</strong>以国有大行（工商银行、交通银行、农业银行）和优质股份行（招商银行）为底仓，获取稳健股息收益（平均股息率约4.5-5.1%）和估值修复空间。国有行受益于净息差企稳+MLF放量流动性充裕+宽基ETF资金回流，基本面确定性最强。交通银行估值折价最深（PB 0.53倍）、弹性最大。<br><br>
+    <strong>弹性仓位（30%）：</strong>配置优质区域银行（宁波银行、江苏银行、苏州银行），受益于区域经济高景气度、信贷增速领先和业绩弹性，在中报窗口期有望获得超额收益。宁波银行今日机构调研释放积极信号，江苏银行资金面和基本面兼备。<br><br>
+    <strong>卫星仓位（20%）：</strong>布局高弹性区域小行（渝农商行、齐鲁银行），渝农商行获东方证券"买入"评级，三农金融+成渝经济圈政策红利明确；齐鲁银行获银河证券重点推荐，地方国资增持意愿强。小仓位参与，设置8-10%止损线。<br><br>
+    <strong>操作节奏：</strong>当前银行板块处于「估值底部+业绩改善+资金回流」三重共振窗口——Q2主动基金持仓降至历史最低（0.66%）降无可降，宽基ETF 7月已转为净流入，多家券商一致看好下半年估值修复。建议在8月中旬中报密集披露前逢低布局。短期风险点：8月1日贷款新规实施对零售信贷的影响、信贷需求持续低迷、有色金属等周期板块暴跌带来的系统性风险传导。重点关注9月美联储议息会议和国内政治局会议政策信号。
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ============ FOOTER ============ -->
+<footer class="page-footer">
+  <p><i class="fa-solid fa-building-columns"></i> 银行业每日复盘 · 2026年7月24日</p>
+  <p>数据来源：东方财富Choice · 妙想金融终端 · Wind · 央行官网 · 金融监管总局官网</p>
+  <p>免责声明：本报告仅供投资研究参考，不构成投资建议。市场有风险，投资需谨慎。</p>
+  <p style="margin-top:8px;">© 2026 Banking Sector Daily Review | Generated by Claude Code</p>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<button id="back-to-top" title="返回顶部"><i class="fa-solid fa-chevron-up"></i></button>
+
+<script>
+// ============ Navigation Active State ============
+const sections = document.querySelectorAll('h2.section-title');
+const navLinks = document.querySelectorAll('.nav-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id'); });
+  navLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+// ============ Smooth Scroll ============
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// ============ Back to Top ============
+const backToTopBtn = document.getElementById('back-to-top');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 600) { backToTopBtn.classList.add('show'); }
+  else { backToTopBtn.classList.remove('show'); }
+});
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
