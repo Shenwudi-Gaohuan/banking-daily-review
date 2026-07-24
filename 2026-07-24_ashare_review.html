@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股市场每日复盘 — 2026年7月24日</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ============ CSS Variables ============ */
+:root {
+  --citic-red: #8b1a1a; --citic-red-light: #c62828; --citic-red-dark: #5c1010;
+  --up-color: #cf2e2e; --down-color: #2e7d32; --flat-color: #757575;
+  --bg-body: #f0f2f5; --bg-card: #ffffff; --bg-header: #1a2332; --bg-nav: #ffffff;
+  --text-primary: #1a202c; --text-secondary: #4a5568; --text-muted: #a0aec0;
+  --border-color: #e2e8f0; --gold: #c9a962;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08); --shadow-md: 0 4px 12px rgba(0,0,0,0.1); --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+  --font-heading: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-body: "Microsoft YaHei", "SimSun", "Noto Serif SC", serif;
+  --font-data: "Consolas", "Courier New", monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg-body); font-family: var(--font-body); color: var(--text-primary); line-height: 1.8; font-size: 15px; }
+a { color: var(--citic-red); text-decoration: none; }
+/* ============ Header ============ */
+.top-header {
+  background: linear-gradient(135deg, var(--bg-header) 0%, #2d3a4a 100%);
+  color: #fff; padding: 32px 0 24px; text-align: center;
+  border-bottom: 3px solid var(--gold);
+}
+.top-header h1 { font-family: var(--font-heading); font-size: 28px; letter-spacing: 3px; margin-bottom: 6px; font-weight: 700; }
+.top-header .subtitle { font-size: 14px; color: #b0bec5; letter-spacing: 2px; }
+.top-header .date-badge { display: inline-block; margin-top: 10px; background: var(--citic-red); color: #fff; padding: 4px 18px; border-radius: 20px; font-size: 13px; letter-spacing: 1px; }
+/* ============ Navigation ============ */
+.nav-bar {
+  position: sticky; top: 0; z-index: 1000; background: var(--bg-nav);
+  box-shadow: var(--shadow-sm); border-bottom: 2px solid var(--citic-red);
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; padding: 0 16px;
+}
+.nav-bar a {
+  display: inline-block; padding: 14px 18px; font-size: 14px; font-family: var(--font-heading);
+  color: var(--text-secondary); transition: all 0.2s; border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.nav-bar a:hover, .nav-bar a.active { color: var(--citic-red); border-bottom-color: var(--citic-red); font-weight: 600; }
+/* ============ Container ============ */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+/* ============ Section Titles ============ */
+.section-title {
+  font-family: var(--font-heading); font-size: 22px; font-weight: 700; color: var(--bg-header);
+  margin: 36px 0 18px; padding-left: 16px; border-left: 5px solid var(--citic-red);
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title i { color: var(--gold); font-size: 20px; }
+/* ============ Hero Cards ============ */
+.hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 20px; }
+.hero-card {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 16px 18px; text-align: center; transition: all 0.2s; border-top: 3px solid transparent;
+}
+.hero-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.hero-card.up { border-top-color: var(--up-color); }
+.hero-card.down { border-top-color: var(--down-color); }
+.hero-card .name { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 1px; }
+.hero-card .price { font-size: 20px; font-weight: 700; font-family: var(--font-data); margin: 4px 0; }
+.hero-card .change { font-size: 15px; font-weight: 600; }
+.hero-card .change.up { color: var(--up-color); }
+.hero-card .change.down { color: var(--down-color); }
+/* ============ Market Summary Bar ============ */
+.summary-bar {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 16px 20px; margin-bottom: 20px; display: flex; flex-wrap: wrap;
+  justify-content: space-around; gap: 12px; font-size: 14px; color: var(--text-secondary);
+}
+.summary-bar span { font-weight: 600; color: var(--text-primary); }
+/* ============ Sector Table ============ */
+.sector-table-wrap { overflow-x: auto; margin-bottom: 20px; }
+.sector-table {
+  width: 100%; border-collapse: separate; border-spacing: 0; border-radius: var(--radius-md);
+  overflow: hidden; box-shadow: var(--shadow-sm); font-size: 13px;
+}
+.sector-table thead th {
+  background: var(--bg-header); color: #fff; padding: 12px 14px; font-family: var(--font-heading);
+  font-weight: 600; position: sticky; top: 0; white-space: nowrap;
+}
+.sector-table thead th:first-child { border-radius: var(--radius-md) 0 0 0; }
+.sector-table thead th:last-child { border-radius: 0 var(--radius-md) 0 0; }
+.sector-table tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border-color); text-align: center; white-space: nowrap; }
+.sector-table tbody tr:hover td { background: #f7fafc; }
+.sector-table .name-cell { text-align: left; font-weight: 600; font-family: var(--font-heading); }
+.sector-table .up { color: var(--up-color); font-weight: 700; }
+.sector-table .down { color: var(--down-color); font-weight: 700; }
+.sector-table .rank { font-weight: 700; color: var(--gold); font-size: 12px; }
+/* ============ News Cards ============ */
+.news-card {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 16px 20px; margin-bottom: 12px; border-left: 4px solid var(--citic-red);
+  transition: box-shadow 0.2s;
+}
+.news-card:hover { box-shadow: var(--shadow-md); }
+.news-card.bank { border-left-color: #1565c0; }
+.news-card.nonbank { border-left-color: #e65100; }
+.news-card.macro { border-left-color: #6a1b9a; }
+.news-card.overseas { border-left-color: #00838f; }
+.news-card .tag {
+  display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 4px;
+  background: #fef2f2; color: var(--citic-red-light); margin-right: 8px; font-family: var(--font-heading);
+}
+.news-card.bank .tag { background: #e3f2fd; color: #1565c0; }
+.news-card.nonbank .tag { background: #fff3e0; color: #e65100; }
+.news-card.macro .tag { background: #f3e5f5; color: #6a1b9a; }
+.news-card.overseas .tag { background: #e0f7fa; color: #00838f; }
+.news-card .time { font-size: 11px; color: var(--text-muted); margin-left: 8px; }
+.news-card h4 { font-size: 14px; font-weight: 700; margin: 6px 0; color: var(--text-primary); font-family: var(--font-heading); }
+.news-card p { font-size: 13px; color: var(--text-secondary); margin-top: 4px; line-height: 1.6; }
+.news-card .source { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+/* ============ Industry Accordion ============ */
+.industry-section { margin-bottom: 8px; }
+.industry-header {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  padding: 14px 20px; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--font-heading); font-weight: 600; font-size: 15px;
+  border-left: 4px solid transparent; transition: all 0.2s;
+}
+.industry-header:hover { box-shadow: var(--shadow-md); }
+.industry-header.finance { border-left-color: #1565c0; }
+.industry-header.tmt { border-left-color: #7b1fa2; }
+.industry-header.cyclical { border-left-color: #e65100; }
+.industry-header.consumer { border-left-color: #c62828; }
+.industry-header.manufacturing { border-left-color: #2e7d32; }
+.industry-header i.fa-chevron-down { transition: transform 0.3s; color: var(--text-muted); }
+.industry-header.open i.fa-chevron-down { transform: rotate(180deg); }
+.industry-content { display: none; padding: 12px 20px; background: #fafbfc; border-radius: 0 0 var(--radius-md) var(--radius-md); margin-bottom: 4px; }
+.industry-content.show { display: block; }
+.industry-content p { font-size: 13px; color: var(--text-secondary); margin: 8px 0; }
+/* ============ Fund Table ============ */
+.fund-highlight { background: linear-gradient(135deg, #fff8e1, #fffde7); border: 2px solid var(--gold); border-radius: var(--radius-lg); padding: 20px; margin-bottom: 20px; }
+.fund-highlight h3 { font-family: var(--font-heading); color: var(--citic-red-dark); margin-bottom: 10px; }
+.fund-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.fund-table th { background: var(--bg-header); color: #fff; padding: 10px 12px; font-family: var(--font-heading); text-align: center; }
+.fund-table td { padding: 8px 12px; border-bottom: 1px solid var(--border-color); text-align: center; }
+.fund-table .fund-name { text-align: left; font-weight: 600; font-family: var(--font-heading); }
+.fund-table .star { color: var(--gold); }
+/* ============ Three Column Grid ============ */
+.three-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 20px; }
+.overseas-card {
+  background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: 16px 20px;
+}
+.overseas-card h3 { font-family: var(--font-heading); font-size: 15px; margin-bottom: 10px; color: var(--bg-header); border-bottom: 2px solid var(--border-color); padding-bottom: 8px; }
+.overseas-card .idx-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 13px; border-bottom: 1px dotted var(--border-color); }
+.overseas-card .idx-row:last-child { border-bottom: none; }
+/* ============ Macro Dashboard ============ */
+.macro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.macro-item { background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: 14px; text-align: center; }
+.macro-item .label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.macro-item .value { font-size: 20px; font-weight: 700; font-family: var(--font-data); color: var(--bg-header); }
+.macro-item .detail { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+/* ============ Back to Top ============ */
+.back-to-top {
+  position: fixed; bottom: 30px; right: 30px; width: 46px; height: 46px; border-radius: 50%;
+  background: var(--citic-red); color: #fff; border: none; cursor: pointer; box-shadow: var(--shadow-md);
+  opacity: 0; transition: opacity 0.3s, transform 0.3s; z-index: 999; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.back-to-top.visible { opacity: 1; }
+.back-to-top:hover { transform: translateY(-3px); background: var(--citic-red-dark); }
+/* ============ Footer ============ */
+.footer {
+  background: var(--bg-header); color: #8899aa; padding: 24px; text-align: center;
+  font-size: 12px; line-height: 2; margin-top: 40px;
+}
+.footer strong { color: #b0bec5; }
+/* ============ Responsive ============ */
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-bar { overflow-x: auto; justify-content: flex-start; }
+  .nav-bar a { padding: 10px 14px; font-size: 13px; }
+  .container { padding: 10px; }
+  .section-title { font-size: 18px; }
+}
+@media (max-width: 480px) { .hero-grid { grid-template-columns: 1fr; } .three-col { grid-template-columns: 1fr; } }
+/* ============ Highlight Box ============ */
+.highlight-box {
+  background: linear-gradient(135deg, #fff5f5, #fff); border: 1px solid #fecaca;
+  border-radius: var(--radius-md); padding: 16px 20px; margin: 16px 0;
+  font-size: 14px; color: var(--citic-red-dark);
+}
+.highlight-box strong { color: var(--citic-red); }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<div class="top-header">
+  <h1><i class="fa-solid fa-chart-line"></i> A股市场每日复盘</h1>
+  <p class="subtitle">基于东方财富Choice数据 · 中信证券行业分类 · 数据驱动决策</p>
+  <span class="date-badge"><i class="fa-regular fa-calendar"></i> 2026年7月24日（周五）</span>
+</div>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="nav-bar" id="navBar">
+  <a href="#overview"><i class="fa-solid fa-chart-simple"></i> 市场总览</a>
+  <a href="#sector"><i class="fa-solid fa-layer-group"></i> 板块涨跌</a>
+  <a href="#macro"><i class="fa-solid fa-building-columns"></i> 宏观政策</a>
+  <a href="#industry"><i class="fa-solid fa-newspaper"></i> 行业要闻</a>
+  <a href="#overseas"><i class="fa-solid fa-globe"></i> 海外市场</a>
+  <a href="#recommend"><i class="fa-solid fa-star"></i> 重点推荐</a>
+</nav>
+
+<div class="container">
+
+<!-- ============ SECTION 1: 市场总览 ============ -->
+<section id="overview">
+<h2 class="section-title"><i class="fa-solid fa-chart-simple"></i> 一、市场总览</h2>
+
+<div class="hero-grid">
+  <div class="hero-card down"><div class="name">上证综指</div><div class="price">3,814.20</div><div class="change down">▼ -1.61%</div></div>
+  <div class="hero-card down"><div class="name">深证成指</div><div class="price">13,774.68</div><div class="change down">▼ -2.47%</div></div>
+  <div class="hero-card down"><div class="name">沪深300</div><div class="price">4,649.19</div><div class="change down">▼ -1.67%</div></div>
+  <div class="hero-card down"><div class="name">创业板指</div><div class="price">3,480.87</div><div class="change down">▼ -2.65%</div></div>
+  <div class="hero-card down"><div class="name">科创50</div><div class="price">1,787.20</div><div class="change down">▼ -0.14%</div></div>
+  <div class="hero-card down"><div class="name">中证1000</div><div class="price">6,995.69</div><div class="change down">▼ -2.78%</div></div>
+</div>
+
+<div class="summary-bar">
+  <div><i class="fa-solid fa-coins"></i> 两市成交额：<span>1.93万亿元</span>（较前日缩量约7,400亿）</div>
+  <div><i class="fa-solid fa-arrow-up-wide-short"></i> 上涨板块：<span style="color:var(--up-color)">1</span>/30</div>
+  <div><i class="fa-solid fa-arrow-down-wide-short"></i> 下跌板块：<span style="color:var(--down-color)">29</span>/30</div>
+  <div><i class="fa-solid fa-money-bill-trend-up"></i> 主力资金：<span style="color:var(--down-color)">净流出779.7亿元</span></div>
+</div>
+
+<p style="font-size:14px;color:var(--text-secondary);line-height:1.9;text-indent:2em;margin-bottom:16px;">
+7月24日（周五），A股市场呈现<strong style="color:var(--citic-red);">全线调整、银行独红</strong>的极端分化格局。三大指数集体收跌，全市场逾4300只个股下跌。沪深两市成交额约1.93万亿元，较前一交易日（2.67万亿）大幅缩量约7400亿，显示市场观望情绪浓厚。仅银行板块逆市收红（+0.31%），成为30个中信一级行业中唯一的上涨板块。有色金属板块暴跌4.71%领跌全市场，煤炭、计算机、传媒、医药等均跌超3%。隔夜美股纳斯达克大跌2.15%（特斯拉暴跌超14%），叠加美国对60个经济体加征新关税今日生效，海外扰动传导至A股。国内方面，央行连续第3个月加量续作MLF（净投放1000亿元）、证监会召开稳市场座谈会，政策托底信号明确。市场风格继续从前期极致的科技成长向防御性红利资产切换，但切换过程伴随剧烈波动。
+</p>
+
+<div class="highlight-box">
+  <strong>📌 市场特征：</strong>「全线普跌、银行独红」格局显著，大金融防御板块与周期成长板块形成极致分化。银行逆市+0.31%（7月以来18天14阳），而有色金属-4.71%、计算机-3.66%、煤炭-3.17%跌幅居前。全市场资金净流出779.7亿元，科创50仅微跌0.14%表现最为抗跌。公募基金Q2 TMT持仓突破61.6%创新高后，风格再平衡压力持续释放，高低切换进入深水区。
+</div>
+</section>
+
+<!-- ============ SECTION 2: 板块涨跌 ============ -->
+<section id="sector">
+<h2 class="section-title"><i class="fa-solid fa-layer-group"></i> 二、中信证券一级行业板块涨跌情况</h2>
+
+<div class="sector-table-wrap">
+<table class="sector-table">
+<thead><tr><th>排名</th><th>板块名称</th><th>7月24日涨跌幅</th><th>成交额(亿元)</th><th>资金流向</th></tr></thead>
+<tbody>
+<tr><td class="rank">🥇 1</td><td class="name-cell" style="background:#e3f2fd;"><strong>🏦 银行</strong></td><td class="up" style="background:#e3f2fd;">▲ +0.31%</td><td>275</td><td>唯一上涨</td></tr>
+<tr><td class="rank">🥈 2</td><td class="name-cell">电子</td><td class="down">▼ -0.76%</td><td>5,749</td><td>主力净流出41.65亿</td></tr>
+<tr><td class="rank">🥉 3</td><td class="name-cell">家电</td><td class="down">▼ -0.92%</td><td>136</td><td>—</td></tr>
+<tr><td class="rank">4</td><td class="name-cell">食品饮料</td><td class="down">▼ -1.01%</td><td>228</td><td>—</td></tr>
+<tr><td class="rank">5</td><td class="name-cell">纺织服装</td><td class="down">▼ -1.20%</td><td>84</td><td>—</td></tr>
+<tr><td class="rank">6</td><td class="name-cell">轻工制造</td><td class="down">▼ -1.98%</td><td>114</td><td>—</td></tr>
+<tr><td class="rank">7</td><td class="name-cell">国防军工</td><td class="down">▼ -1.99%</td><td>523</td><td>—</td></tr>
+<tr><td class="rank">8</td><td class="name-cell">建筑</td><td class="down">▼ -2.00%</td><td>218</td><td>—</td></tr>
+<tr><td class="rank">9</td><td class="name-cell">机械</td><td class="down">▼ -2.05%</td><td>1,317</td><td>—</td></tr>
+<tr><td class="rank">10</td><td class="name-cell">汽车</td><td class="down">▼ -2.08%</td><td>440</td><td>—</td></tr>
+<tr><td class="rank">11</td><td class="name-cell" style="background:#fff3e0;"><strong>💰 非银行金融</strong></td><td class="down">▼ -2.43%</td><td>407</td><td>保险-1.27%</td></tr>
+<tr><td class="rank">12</td><td class="name-cell">建材</td><td class="down">▼ -2.49%</td><td>60</td><td>—</td></tr>
+<tr><td class="rank">13</td><td class="name-cell">石油石化</td><td class="down">▼ -2.58%</td><td>251</td><td>—</td></tr>
+<tr><td class="rank">14</td><td class="name-cell">电力设备及新能源</td><td class="down">▼ -2.60%</td><td>1,235</td><td>主力净流出</td></tr>
+<tr style="border-top:2px solid #ddd;"><td class="rank">15</td><td class="name-cell">房地产</td><td class="down">▼ -2.77%</td><td>120</td><td>—</td></tr>
+<tr><td class="rank">16</td><td class="name-cell">农林牧渔</td><td class="down">▼ -2.80%</td><td>132</td><td>—</td></tr>
+<tr><td class="rank">17</td><td class="name-cell">商贸零售</td><td class="down">▼ -2.83%</td><td>128</td><td>—</td></tr>
+<tr><td class="rank">18</td><td class="name-cell">钢铁</td><td class="down">▼ -2.85%</td><td>69</td><td>—</td></tr>
+<tr><td class="rank">19</td><td class="name-cell">电力及公用事业</td><td class="down">▼ -2.91%</td><td>695</td><td>—</td></tr>
+<tr><td class="rank">20</td><td class="name-cell">基础化工</td><td class="down">▼ -3.06%</td><td>946</td><td>—</td></tr>
+<tr><td class="rank">21</td><td class="name-cell">通信</td><td class="down">▼ -3.08%</td><td>1,314</td><td>主力净流出52亿+</td></tr>
+<tr><td class="rank">22</td><td class="name-cell">煤炭</td><td class="down">▼ -3.17%</td><td>115</td><td>大有能源跌停</td></tr>
+<tr><td class="rank">23</td><td class="name-cell">消费者服务</td><td class="down">▼ -3.28%</td><td>67</td><td>—</td></tr>
+<tr><td class="rank">24</td><td class="name-cell">医药生物</td><td class="down">▼ -3.52%</td><td>1,150</td><td>主力净流出</td></tr>
+<tr><td class="rank">25</td><td class="name-cell">传媒</td><td class="down">▼ -3.55%</td><td>309</td><td>主力净流出</td></tr>
+<tr><td class="rank">26</td><td class="name-cell">计算机</td><td class="down">▼ -3.66%</td><td>1,141</td><td>主力净流出52亿+</td></tr>
+<tr><td class="rank">27</td><td class="name-cell">有色金属</td><td class="down">▼ -4.71%</td><td>1,220</td><td>主力净流出83.51亿</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="highlight-box">
+  <strong>📊 板块特征总结：</strong>当日仅1个行业上涨、27个行业下跌（余2个数据暂缺）。涨幅唯一为<strong style="color:#1565c0;">银行（+0.31%）</strong>，延续7月以来18天14阳的强势格局，资金面拐点确立后的估值修复持续演绎。跌幅前三为<strong>有色金属（-4.71%）、计算机（-3.66%）、传媒（-3.55%）</strong>。周期资源品在经历前期大涨后遭遇集中获利了结（有色净流出83.51亿全市场第一），紫金矿业遭主力净卖出14.35亿元居全市场首位。TMT板块中电子相对抗跌（-0.76%，成交5749亿居首），通信（-3.08%）和计算机（-3.66%）延续调整。科创50仅微跌0.14%成为最抗跌宽基指数，显示部分资金仍在科技核心赛道坚守。
+</div>
+</section>
+
+<!-- ============ SECTION 3: 宏观政策固收 ============ -->
+<section id="macro">
+<h2 class="section-title"><i class="fa-solid fa-building-columns"></i> 三、宏观经济、政策与固收动向</h2>
+
+<h3 style="font-family:var(--font-heading);font-size:16px;color:var(--bg-header);margin-bottom:12px;">📈 最新宏观经济指标（2026年6月）</h3>
+<div class="macro-grid">
+  <div class="macro-item"><div class="label">CPI（同比）</div><div class="value">1.0%</div><div class="detail">环比温和</div></div>
+  <div class="macro-item"><div class="label">PPI（累计同比）</div><div class="value">1.5%</div><div class="detail">工业品价格温和回升</div></div>
+  <div class="macro-item"><div class="label">PMI（制造业）</div><div class="value">50.3</div><div class="detail">连续处于扩张区间</div></div>
+  <div class="macro-item"><div class="label">M2（同比）</div><div class="value">8.0%</div><div class="detail">总量稳健增长</div></div>
+  <div class="macro-item"><div class="label">社融增量（6月）</div><div class="value">3.37万亿</div><div class="detail">新增人民币贷款1.61万亿</div></div>
+  <div class="macro-item"><div class="label">SHIBOR隔夜</div><div class="value">1.381%</div><div class="detail">资金面整体偏松</div></div>
+  <div class="macro-item"><div class="label">10年期国债</div><div class="value">1.721%</div><div class="detail">7月23日</div></div>
+  <div class="macro-item"><div class="label">国债期货(主力)</div><div class="value">109.30元</div><div class="detail">持仓37.58万手</div></div>
+</div>
+
+<h3 style="font-family:var(--font-heading);font-size:16px;color:var(--bg-header);margin-bottom:12px;">🏛️ 政策要闻</h3>
+
+<div class="news-card macro">
+  <span class="tag"><i class="fa-solid fa-landmark"></i> 央行政策</span><span class="time">2026-07-24</span>
+  <h4>央行开展5000亿元MLF操作，连续第3个月加量续作，净投放1000亿元</h4>
+  <p>7月24日，央行以固定数量、利率招标、多重价位中标方式开展5000亿元MLF操作，期限1年期。7月25日到期MLF为4000亿元，此次操作实现净投放1000亿元，为连续第3个月加量续作。同日开展890亿7天期逆回购操作（利率1.40%），当日4505亿逆回购到期，单日净回笼3615亿元。分析认为，央行近期操作一方面对冲市场流动性波动，另一方面释放维稳信号——两笔操作期限均跨越2027年，既避免短期工具频繁操作对市场预期的干扰，又为下半年经济复苏提供更稳定的资金环境。7月15日央行已开展14000亿元6个月买断式逆回购，净投放5000亿元，为3月以来首次净投放。</p>
+  <div class="source">来源：中国人民银行、第一创业、东海证券、东方财富Choice</div>
+</div>
+
+<div class="news-card macro">
+  <span class="tag"><i class="fa-solid fa-scale-balanced"></i> 监管动态</span><span class="time">2026-07-23</span>
+  <h4>证监会：综合施策全力维护市场平稳运行，推动中长期资金稳步提升入市规模和比例</h4>
+  <p>中国证监会7月23日召开党的建设暨监管工作座谈会。会议强调：一是综合施策全力维护市场平稳运行，提升资本市场韧性；二是更加精准有效实施逆周期调节，推动中长期资金稳步提升入市规模和比例；三是确保资本市场"十五五"良好开局。会议还提出"释放强大资本力量，谱写中国式现代化崭新篇章"的总体要求。此前7月19-20日国新、诚通两大国有资本运营公司同步宣布百亿级增持，证监会召开稳市场专题座谈会，标志着稳市机制已进入常态化运行阶段。</p>
+  <div class="source">来源：金融界、澎湃新闻、证券时报</div>
+</div>
+
+<div class="news-card macro">
+  <span class="tag"><i class="fa-solid fa-file-invoice"></i> 财政政策</span><span class="time">2026-07-24</span>
+  <h4>蓝佛安：推动财政政策与货币政策同向发力；上半年财政收入增长4.7%</h4>
+  <p>财政部部长蓝佛安在人民日报发文指出，要实施好财政金融协同促内需一揽子政策，推动打通制约投资消费的堵点卡点，拓展内需增长新空间。财政部公布上半年财政收支情况：全国一般公共预算收入12.10万亿元（同比+4.7%），其中税收收入9.79万亿元（+5.3%），非税收入2.32万亿元（+2.3%），财政运行总体平稳。财政部7月24日发行1300亿元5年期附息国债。上半年央企实现利润总额1.4万亿元，固定资产投资同比+4.5%。</p>
+  <div class="source">来源：财联社、人民日报、东方财富Choice</div>
+</div>
+
+<div class="news-card macro">
+  <span class="tag"><i class="fa-solid fa-chart-simple"></i> 经济形势</span><span class="time">2026-07-24</span>
+  <h4>7月政治局会议前瞻：逆周期调节或将加力，"人工智能+"引领智能经济新形态</h4>
+  <p>财新网刊发7月政治局会议前瞻分析：李强总理7月13日在经济形势座谈会上指出"加大逆周期调节力度，用好用足存量政策，预研储备增量政策"。预计本次政治局会议将重点部署：①逆周期调节加力——存量政策释放加快+增量政策储备；②"六张网"建设托底投资止跌回升；③"人工智能+"引领智能经济新形态；④呵护资本市场来之不易的信心；⑤房地产政策仍待进一步释放。社科院报告指出上半年GDP增长4.7%，供强需弱结构性矛盾突出，建议下半年加大财政货币政策协同力度。</p>
+  <div class="source">来源：财新网、中国经济网</div>
+</div>
+
+<div class="news-card macro">
+  <span class="tag"><i class="fa-solid fa-arrow-trend-down"></i> 固收市场</span><span class="time">2026-07-24</span>
+  <h4>国债期货报109.30元，部分银行调降存款利率，监管通报5起券商债券违规案例</h4>
+  <p>7月24日10年期国债期货主力合约收报109.30元，持仓量37.58万手，成交量9.43万手。10年期国债收益率7月23日报1.721%（Choice口径），较前一交易日微升0.2bp。部分银行调降存款利率，对债市形成利好支撑。监管通报5起券商债券业务违法违规典型案例，覆盖债券承销内控、存续期受托管理两大核心业务环节。市场密切关注7月底政治局会议对财政货币政策的最新定调，多家券商研判三季度为降准降息重要窗口。</p>
+  <div class="source">来源：东方财富Choice、财联社、申银万国期货</div>
+</div>
+
+<div class="news-card macro">
+  <span class="tag"><i class="fa-solid fa-globe"></i> 对外贸易</span><span class="time">2026-07-24</span>
+  <h4>商务部：中美正探讨推进各自300亿美元规模对等降税框架安排；上半年进口增速22.1%快于出口</h4>
+  <p>商务部外资司司长孟华婷在国新办发布会上透露，中美双方经贸团队正就贸易理事会架构、职能、运行模式等保持密切沟通，并探讨推进各自300亿美元规模的对等降税框架安排。中方正广泛征求利益相关方意见，美方也在征求公众评论意见。上半年中国货物贸易进出口平衡发展呈现新特征：22.1%的进口增速明显快于出口，进口月度增速连续4个月保持两成以上。但美国对60个经济体加征10%-12.5%新关税7月24日正式生效，全球贸易政策不确定性升温。</p>
+  <div class="source">来源：国海证券、金融界、金十数据</div>
+</div>
+</section>
+
+<!-- ============ SECTION 4: 行业要闻 ============ -->
+<section id="industry">
+<h2 class="section-title"><i class="fa-solid fa-newspaper"></i> 四、行业要闻（按中信证券行业分类）</h2>
+
+<!-- 金融产业 FIRST -->
+<h3 style="font-family:var(--font-heading);font-size:18px;color:#1565c0;margin:20px 0 12px;padding:8px 16px;background:#e3f2fd;border-radius:var(--radius-sm);">
+  🏦 金融产业板块（银行 · 非银行金融）
+</h3>
+
+<div class="industry-section">
+  <div class="industry-header finance open" onclick="toggleIndustry(this)">
+    <span><i class="fa-solid fa-building-columns"></i> 🏦 银行 — 板块涨幅 +0.31% | 7月以来18天14阳 | 全市场唯一上涨板块</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div class="industry-content show">
+    <div class="news-card bank">
+      <span class="tag">资金面拐点</span><span class="time">2026-07-24</span>
+      <h4>银行股资金面拐点已确立：沪深300宽基ETF减仓压力基本出清，被动资金扰动减弱</h4>
+      <p>长江证券最新分析指出，银行股资金面拐点已经确立——2026年上半年沪深300宽基指数基金净流出接近一万亿元，7月以来减仓压力已基本出清；同时主动公募基金银行股持仓降至2018年以来历史新低（26Q2低配19.8个百分点，持仓占比降至1.10%），降无可降。东兴证券跟踪显示，目前上市银行平均预期股息率约4.5%，处于近一年较高位置，较10年期国债收益率溢价275bp，部分低估值中小银行股息率已升至5%以上。中国银河测算，截至7月21日近1日和近1周ETF净申赎引发对银行板块的资金流入分别为17.59亿元和84.76亿元，扭转了年初以来大幅流出的局面。</p>
+      <div class="source">来源：长江证券、东兴证券、中国银河</div>
+    </div>
+    <div class="news-card bank">
+      <span class="tag">市值管理</span><span class="time">2026-07-24</span>
+      <h4>多家上市银行成立市值管理小组：光大银行加入，招商中信已率先行动</h4>
+      <p>光大银行7月20日在"上证e互动"平台表示已成立"市值管理小组"，全面统筹市值管理工作，积极维护公司价值和股东权益。此前中信银行、招商银行已率先宣布成立市值管理小组。此举标志着上市银行对估值修复和市值管理的重视程度显著提升。在当前42家A股上市银行全部处于破净状态（PB 0.27-0.92倍）的背景下，银行主动市值管理有助于提振市场信心并推动估值修复。</p>
+      <div class="source">来源：界面新闻、央广网</div>
+    </div>
+    <div class="news-card bank">
+      <span class="tag">股东增持</span><span class="time">2026-07-24</span>
+      <h4>银行股东高管密集增持：南京银行江苏交控增持超1.22亿股，中国银行支持151个回购计划</h4>
+      <p>近期多家银行披露增持方案或实施进度：南京银行获江苏交控自2025年9月至2026年7月增持超1.22亿股，法国巴黎银行等主要股东持续看好；中国银行已通过股票回购增持贷款产品支持151个上市公司回购增持计划；中信银行北京分行储备项目金额超过200亿元。Wind数据显示，7月以来已有300余家上市公司实施回购，累计回购金额约180亿元。中国银河测算险资一季度可用于配置银行的增量资金约787.9亿元，后续季度仍将持续增长。年初以来已有7家上市银行发布8次增持公告，增持股东多为地方国资平台。</p>
+      <div class="source">来源：央视财经、界面新闻、中国银河</div>
+    </div>
+    <div class="news-card bank">
+      <span class="tag">业绩前瞻</span><span class="time">2026-07-24</span>
+      <h4>东方证券：26Q2银行营收利润基本持平，净息差平稳表现仍是超预期关键驱动</h4>
+      <p>东方证券发布A股银行26Q2业绩前瞻报告：预测上市银行26H1营收同比+7.0%（较26Q1小幅下降0.7pct），归母净利润同比+2.7%（较26Q1小幅下降0.3pct），业绩增速总体保持稳定，其中国有大行表现相对亮眼。净息差预计保持平稳——定期存款重定价进一步释放负债成本改善空间，叠加同业负债自律整改落地，测算26年全年计息负债成本改善30bp+，上半年有望体现70%+。建议关注两条主线：基本面确定的优质中小行（宁波银行、苏州银行、杭州银行、南京银行、渝农商行）和基本面稳健的国有大行（工商银行、中国银行）。</p>
+      <div class="source">来源：东方证券·屈俊</div>
+    </div>
+    <div class="news-card bank">
+      <span class="tag">业绩快报</span><span class="time">2026-07-24</span>
+      <h4>渝农商行率先发布上市农商行半年业绩快报：H1营收+7.81%、净利+6.09%</h4>
+      <p>重庆农商行（渝农商行）7月21日发布2026年半年度业绩快报：上半年实现营业收入158.92亿元（同比+7.81%），归母净利润81.68亿元（同比+6.09%）。资产总额17,882亿元（较上年末+7.35%），负债总额16,354亿元。该行表示一季度负债成本改善效应充分释放，预计后续负债成本下行节奏边际放缓，将通过精细化资产负债管理、优化定价机制等推动全年净息差企稳回升。长江证券点评认为，渝农商行利润逐季提速、不良连续下行，A/H股息率分别为5.3%/6.4%，红利配置价值突出。</p>
+      <div class="source">来源：华夏时报、长江证券</div>
+    </div>
+    <div class="news-card bank">
+      <span class="tag">港股银行</span><span class="time">2026-07-24</span>
+      <h4>加息预期升温香港银行股大涨：大新银行+6.94%、东亚银行+6.74%、中银香港+4.22%</h4>
+      <p>受油价上涨推动美债收益率升至年内最高水平影响，市场预期美联储最快下周加息（概率约31%）。加息环境下净息差扩大有望利好香港银行盈利。大新银行集团涨6.94%、东亚银行涨6.74%、中银香港涨4.22%。华泰证券指出年初以来外资对港股金融板块整体增配，建议把握香港银行价值重估机会，下阶段需重视香港经济基本面修复与息差企稳带来的业绩改善机会。</p>
+      <div class="source">来源：新浪财经、华泰证券</div>
+    </div>
+  </div>
+</div>
+
+<!-- 非银行金融 -->
+<div class="industry-section">
+  <div class="industry-header finance open" onclick="toggleIndustry(this)">
+    <span><i class="fa-solid fa-hand-holding-dollar"></i> 💰 非银行金融 — 券商 -2.43% | 保险 -1.27%（申万指数）</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div class="industry-content show">
+    <div class="news-card nonbank">
+      <span class="tag">保险</span><span class="time">2026-07-24</span>
+      <h4>保险预定利率研究值两连升至1.94%，年内难触发下调条件，利差损压力边际缓解</h4>
+      <p>中国保险行业协会公布2Q26普通型人身险预定利率研究值为1.94%，环比提升1bp，实现连续两个季度回升。中泰证券非银首席葛玉翔指出，研究值从1.89%底部反弹至1.94%，虽然幅度不大但方向性意义远超幅度本身——标志着保险定价利率下行周期暂时画上休止符。当前在售产品预定利率上限2.0%较研究值高出仅6bp，今年内难触发下调条件。保险板块估值0.97倍PB，处于近十年10.2%分位。26Q2主动基金大幅减仓保险，但中泰证券认为随着科技板块调整、市场风险偏好降低，保险板块或迎来资金回流，估值修复有望延续。</p>
+      <div class="source">来源：观察者网、中泰证券、兴业证券</div>
+    </div>
+    <div class="news-card nonbank">
+      <span class="tag">券商</span><span class="time">2026-07-24</span>
+      <h4>券商保险中期业绩集体高增，证券ETF天弘规模突破120亿创上市新高</h4>
+      <p>非银金融行业中报业绩预喜率居已披露行业前列。26Q2公募基金重仓数据显示A股券商获小幅增配、保险连续两季减配，港股非银板块券商获环比大幅加仓。证券ETF天弘（159841）最近20个交易日累计获资金净流入12.71亿元，规模达120.92亿元再创上市以来新高（深市同标的第一）。当前证券公司指数PE-TTM仅15.47倍，处于近十年4.49%分位，低于近十年95.51%的时间。招商证券中期策略指出券商行业面临科技牵引（大投行蝶变）、国际深化（跨境投资高ROE）、财富蓄势（存款搬家渗透）三大趋势。</p>
+      <div class="source">来源：金融界、每日经济新闻、招商证券、国金证券</div>
+    </div>
+    <div class="news-card nonbank">
+      <span class="tag">基金持仓</span><span class="time">2026-07-24</span>
+      <h4>26Q2非银主动权益公募持仓：券商获小幅增配、保险大幅减仓，整体欠配4.55%</h4>
+      <p>兴业证券统计显示，26Q2主动权益基金AH非银板块持仓市值283亿元（环比-15.2%），持仓占比环比下降0.67pct至1.10%。中泰证券指出，基于全市场主动权益基准，非银板块合计欠配比例高达4.55%，欠配规模达1728亿元。市场动荡下金融板块被赋予稳盘职能，看好板块演绎"先跑相对，再有绝对"走势。建议关注头部券商如国泰海通、中信证券，以及估值具吸引力的保险股如中国人寿、中国财险、新华保险。</p>
+      <div class="source">来源：兴业证券、中泰证券、国金证券</div>
+    </div>
+    <div class="news-card nonbank">
+      <span class="tag">上海新政</span><span class="time">2026-07-23</span>
+      <h4>上海出台科技金融20条：推动科创板AI、低空经济企业适用第五套标准上市</h4>
+      <p>7月23日，上海发布《上海市充分发挥直接融资功能进一步加强科技金融服务的若干措施》，提出20条具体举措。核心亮点包括：推动出台科创板人工智能、低空经济等企业适用第五套标准上市审核指引，推动可控核聚变等新兴产业和未来产业领域企业在科创板上市，持续扩大科创板第五套上市标准的适用范围。围绕提升早期投资领投定价能力、构建完善股权投资接续机制、发挥资本市场关键枢纽作用、丰富多元长期资本供给和优化配套制度环境等五个方向发力。</p>
+      <div class="source">来源：澎湃新闻、东方财富研究中心</div>
+    </div>
+  </div>
+</div>
+
+<!-- TMT板块 -->
+<h3 style="font-family:var(--font-heading);font-size:18px;color:#7b1fa2;margin:20px 0 12px;padding:8px 16px;background:#f3e5f5;border-radius:var(--radius-sm);">
+  💻 TMT板块（电子 · 通信 · 计算机 · 传媒）
+</h3>
+<div class="industry-section">
+  <div class="industry-header tmt" onclick="toggleIndustry(this)">
+    <span><i class="fa-solid fa-microchip"></i> TMT板块 — 电子 -0.76% | 通信 -3.08% | 计算机 -3.66% | 传媒 -3.55%</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div class="industry-content">
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">基金持仓</span><span class="time">2026-07-24</span>
+      <h4>公募科技持仓冲上历史峰值：电子43.3%+通信16.8%，TMT合计61.6%创历史极值</h4>
+      <p>26Q2公募基金季报数据揭示了一幅历史性的持仓图谱：国盛金工统计显示，主动权益基金配置电子行业权重达42.73%、通信达16.75%，均处于历史最高位。TMT板块整体配置权重突破61.6%，领先第二名大制造板块近48个百分点。科创板成为本轮加仓核心阵地（Q2环比+9.43pct至23.69%）。东方财富陈果团队指出，电子通信配置比例合计达60.2%，前五大行业配置比例79.2%，均为2010年来最高。单行业持仓43.3%超越了2021年茅台等核心消费类资产的巅峰占比，A股机构资金配置重心完成了从消费到科技的切换。但集中度已达到历史极值，市场过度分化状态难以持续，风格再平衡正在临近。</p>
+      <div class="source">来源：第一财经、东方财富证券、天风证券、广发证券</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">PCB/扩产</span><span class="time">2026-07-24</span>
+      <h4>两大PCB巨头同日宣布大额扩产：鹏鼎控股100亿+红板科技57亿聚焦AI高阶载板</h4>
+      <p>7月23日晚间，鹏鼎控股拟投资100亿元新建深圳第三园区，建设人工智能高阶类载板及柔性电路板智造基地；红板科技规划合计57亿元布局mSAP高端精密电路板项目及HDI产线技改。本轮扩产瞄准AI服务器、高速光模块高端需求，当前AI算力PCB价值量与毛利率显著高于传统产品，mSAP工艺成为核心技术门槛。上半年PCB行业扩产总投资超700亿元，中长期赛道增长空间广阔。富通微电涨7.39%、瑞芯微涨7.12%、蓝思科技涨4.59%等个股表现活跃。</p>
+      <div class="source">来源：每日经济新闻、巨丰投顾</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">半导体</span><span class="time">2026-07-24</span>
+      <h4>半导体产业景气度持续验证：普冉股份H1预增1925%，长鑫科技7月27日科创板上市</h4>
+      <p>从已披露中报预告看，半导体公司正迎来新一轮业绩兑现周期。普冉股份预计H1净利润同比增长1925%，长川科技、江波龙等多家半导体公司业绩大幅预增。长鑫科技公告将于7月27日在上海证券交易所科创板上市。大同证券TMT分析师闫晓伟认为，AI驱动的科技创新产业升级逻辑并未因短期市场波动而实质性逆转，科技板块调整更多体现为交易层面情绪宣泄，中报业绩兑现能力强劲，部分具备核心竞争力的科技细分领域存在估值修复观察窗口。半导体板块经历7月以来快速回调后，多只个股回撤幅度超30%，配置价值再度凸显。</p>
+      <div class="source">来源：中国证券报、21世纪经济报道、巨丰投顾</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">光模块/通信</span><span class="time">2026-07-24</span>
+      <h4>光模块产业链消息密集：通信ETF高位回调超25%，华工科技高管增持1368万元</h4>
+      <p>通信ETF华夏（515050）自高点以来回调超25%，最新规模超195亿元（同指数第一），估值分位数回落，布局性价比再度凸显。华工科技董事长马新强及高管7月21日合计增持139,900股（金额1367.83万元）。广发证券研报显示，光通信产业链内部出现分化——一季度资金青睐的光纤光缆、光模块、OCS光连接等环节遭减仓，资金逐步向高壁垒的光芯片、检测设备等环节扩散。龙头中际旭创、新易盛继续获机构增持，但部分二线光通信标的被兑现收益。</p>
+      <div class="source">来源：界面新闻、广发证券、第一财经</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">AI算力</span><span class="time">2026-07-24</span>
+      <h4>国投证券：AI科技"M顶"讨论升温——第一个顶部"大概率还未到来"，核心定价逻辑从"涨价"转向"量增"</h4>
+      <p>随着26Q2公募持仓数据揭示AI科技抱团程度创历史新高（TMT超60%、泛AI近七成），叠加近期AI科技大幅下跌，"AI科技抱团瓦解"讨论持续升温。国投证券策略团队7月23日发布报告指出，当前AI科技的调整更多是阶段性过热后的获利了结，产业浪潮最终结束所对应的M顶第一个顶部"大概率还未到来"。报告同时指出，本次下跌后AI科技的核心定价逻辑将逐渐从"涨价信号"转向"量增"信号，内部核心赛道存在再次切换可能。中金公司指出云计算与AI算力资本开支已成为当前市场最核心的结构性主线。谷歌Q2云收入+82%，未来支出承诺飙升至8110亿美元（三个月内暴增近5000亿美元），进一步验证AI基建高景气。</p>
+      <div class="source">来源：华尔街见闻、中金公司、国投证券、金十数据</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">消费电子</span><span class="time">2026-07-24</span>
+      <h4>超七成消费电子企业上半年预盈，AI智能硬件催化行业景气，折叠屏/智能体手机密集发布</h4>
+      <p>截至7月23日，A股已有32家消费电子公司披露上半年业绩预告，逾七成预计盈利。AI已成为行业增长核心引擎——AI智能硬件放量与算力业务拓展支撑起多家公司H1业绩大幅预增。进入下半年旺季：全球首款AI智能体手机正式亮相、三星首款AI眼镜发布、苹果首款折叠屏手机组装出货量预计多达800万台。随着AI智能硬件推动零部件价值量持续上行，行业正步入软硬件协同升级的关键窗口期。北京印发《加快智能体引领发展的若干措施》，鼓励发展Token经济，开发低延迟高吞吐专用推理芯片，加大算力券支持力度。</p>
+      <div class="source">来源：21世纪经济报道、巨丰投顾</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">脑机接口</span><span class="time">2026-07-24</span>
+      <h4>中国脑机接口重大突破：全球首次实现跨地域上千人同步脑电信号采集</h4>
+      <p>我国科研团队发布一款新型脑电信号采集装置，在全球范围内首次实现跨地域上千人同步脑电信号采集，攻克了设备小型化与信号高精度采集、多设备毫秒级时间精准对齐两大技术难关。这标志着神经大模型训练与脑机接口通用技术研发迈出关键一步。未来规模化脑电采集技术将持续沉淀数据用于训练神经基础模型，AI的学习素材将从文字、图像等间接信息拓展至直接通过神经信号理解人类认知状态。石药集团涨3.94%、百济神州涨3.61%，相关医药科技概念股受到催化。</p>
+      <div class="source">来源：国海证券、每日经济新闻</div>
+    </div>
+    <div class="news-card" style="border-left-color:#7b1fa2;">
+      <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">国产算力</span><span class="time">2026-07-24</span>
+      <h4>WAIC 2026超节点加速推出，北京布局Token工厂，上海推动科创板第五套标准扩容</h4>
+      <p>招商证券跟踪报告指出，WAIC 2026上国产AI超节点加速推出，关注国产算力未来放量节奏。北京印发《加快智能体引领发展的若干措施》，鼓励发展Token经济，开发低延迟高吞吐专用推理芯片，加快布局面向智能体高频并发需求的新型算力基础设施，支持创新主体建设"Token工厂"。上海出台科技金融20条，推动科创板AI、低空经济、可控核聚变等企业适用第五套标准上市。中金公司认为，自主可控板块受益于全球AI芯片需求增长带来的设备扩张周期，国产算力供需两侧均显著提升。</p>
+      <div class="source">来源：招商证券、澎湃新闻、中金公司</div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);"><strong>📊 整体总结：</strong>7月24日TMT板块延续调整但内部剧烈分化——电子（-0.76%）成交5749亿居全市场首位、显示资金博弈激烈，科创50仅微跌0.14%为最抗跌宽基指数；而通信（-3.08%）、计算机（-3.66%）、传媒（-3.55%）跌幅居前。公募Q2 TMT持仓突破61.6%创历史极值引发广泛讨论，但多数机构认为产业趋势未逆转。核心关注：①AI算力硬件端景气度持续验证（谷歌资本开支暴增、PCB龙头百亿扩产）；②光模块产业链回调25%+后性价比回升；③半导体设备/材料中报高增+国产替代加速（长鑫科技上市在即）；④AI应用端新突破（脑机接口、AI智能体手机）。短期资金高低切换压力仍在，但中长期产业逻辑坚实。</p>
+  </div>
+</div>
+
+<!-- 周期板块 -->
+<h3 style="font-family:var(--font-heading);font-size:18px;color:#e65100;margin:20px 0 12px;padding:8px 16px;background:#fff3e0;border-radius:var(--radius-sm);">
+  ⛏️ 周期板块（有色 · 煤炭 · 钢铁 · 石化 · 化工 · 建材）
+</h3>
+<div class="industry-section">
+  <div class="industry-header cyclical" onclick="toggleIndustry(this)">
+    <span><i class="fa-solid fa-gem"></i> 周期板块 — 有色 -4.71% | 煤炭 -3.17% | 石化 -2.58% | 钢铁 -2.85% | 化工 -3.06% | 建材 -2.49%</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div class="industry-content">
+    <div class="news-card" style="border-left-color:#e65100;">
+      <span class="tag" style="background:#fff3e0;color:#e65100;">有色金属</span><span class="time">2026-07-24</span>
+      <h4>有色金属板块暴跌4.71%领跌全市场，主力净流出83.51亿，紫金矿业遭净卖出14.35亿</h4>
+      <p>7月24日有色金属板块遭遇系统性重挫，主力资金净流出83.51亿元居全市场之首。紫金矿业遭主力净卖出14.35亿元居全市场个股首位，盛新锂能、博迁新材、天华新能、盛屯矿业等多股跟跌超4%。尽管基本面并不悲观——66家有色上市公司中报预喜率超90%（紫金矿业H1预盈391亿元），美联储降息预期升温提振金属价格——但前期涨幅巨大的获利盘集中兑现成为核心压力。长江证券指出能源金属行业景气趋势延续，锂供需短缺趋势有望延续，锂价有望打开新一轮上涨周期。碳酸锂主力合约7月23日盘中涨超4%站上14.7万元/吨。</p>
+      <div class="source">来源：蓝鲸财经、每日经济新闻、长江证券、南方财经</div>
+    </div>
+    <div class="news-card" style="border-left-color:#e65100;">
+      <span class="tag" style="background:#fff3e0;color:#e65100;">石油石化</span><span class="time">2026-07-24</span>
+      <h4>中东地缘局势急剧升级：美军对伊朗发动新一轮打击，布油突破100美元，OPEC+8月拟增产</h4>
+      <p>美军中央司令部7月23日开始针对伊朗军事目标的新一轮打击，特朗普表示正"认真考虑"重启对伊朗大规模作战行动。也门胡塞武装警告将打击与沙特港口贸易往来的船只。国投证券指出，本轮地缘冲击较上一轮影响更广、库存缓冲空间更小（美国库欣原油库存降至约2000万桶的运营低位），即便美伊局势缓和，油价底部支撑亦有望高于此前水平。OPEC+可能在8月2日会议上决定9月增产约18.8万桶/日。石油ETF鹏华（159697）涨超1.2%冲击3连涨，国证石油天然气指数强势上涨1.60%。中国石化发布H1生产经营数据：油气当量产量263.48百万桶（+0.3%）。</p>
+      <div class="source">来源：界面新闻、金十数据、华泰期货、中国石化公告</div>
+    </div>
+    <div class="news-card" style="border-left-color:#e65100;">
+      <span class="tag" style="background:#fff3e0;color:#e65100;">煤炭</span><span class="time">2026-07-24</span>
+      <h4>煤炭板块跌3.17%，大有能源触及跌停，兖矿能源等跌超5%，全球供给约束长期化</h4>
+      <p>午后煤炭板块震荡走弱，大有能源触及跌停，兖矿能源、辽宁能源、郑州煤电、晋控煤业、山煤国际均跌超5%。东方财富证券发布深度研报指出，全球煤炭供给约束已从天气、事故、物流等短期扰动演变为制度化长期机制——资源民族主义升温（印尼收紧出口、蒙古强化国家控制）、长期资本开支不足削弱供给接续能力。南方港口库存高企施压进口煤市，买家观望情绪升温。但国际市场动力煤价格连续5天上涨（累计涨幅3.9%），电厂日耗煤量周环比涨幅10%，底部支撑仍存。</p>
+      <div class="source">来源：蓝鲸财经、东方财富证券、中国能源网</div>
+    </div>
+    <div class="news-card" style="border-left-color:#e65100;">
+      <span class="tag" style="background:#fff3e0;color:#e65100;">化工</span><span class="time">2026-07-24</span>
+      <h4>炼化龙头领跑化工行业盈利修复，百余家企业预喜率约七成，"反内卷"点燃板块情绪</h4>
+      <p>2026年上半年化工行业表现超出市场预期。恒逸石化以净利润同比增幅超23倍位居增速榜首（H1预计55-60亿元）。国盛证券指出化工板块供给增速已显著下行、机构持仓降至低点，"反内卷"政策（中央财经委第六次会议强调"依法依规治理企业低价无序竞争"）点燃板块情绪。自7月17日起基础化工指数连续四天上涨（累计+5.2%），石油石化指数同步上行。制冷剂R32价格高位续涨、R134a高位持稳，旺季需求+供给配额刚性约束支撑高景气。上半年化工行业出口储能链贡献核心增量。</p>
+      <div class="source">来源：期货日报、国盛证券、巨丰投顾</div>
+    </div>
+    <div class="news-card" style="border-left-color:#e65100;">
+      <span class="tag" style="background:#fff3e0;color:#e65100;">钢铁</span><span class="time">2026-07-24</span>
+      <h4>世界钢协：6月全球粗钢产量同比+1.7%，中国8367万吨+0.4%；节能降碳三年行动启动</h4>
+      <p>世界钢铁协会发布数据，2026年6月全球71国粗钢产量1.557亿吨（同比+1.7%），中国粗钢产量8367万吨（同比+0.4%）。国家发改委等部门启动钢铁、电解铝、水泥、炼油、乙烯等重点行业节能降碳改造攻坚三年行动，中长期将约束高耗能行业供给弹性。隆鑫钢铁携手汉伏能源建设14MW光伏项目，为高耗能制造业低碳突围树立标杆。黑色系期货整体偏弱，但焦煤期货盘面上涨带动港口俄罗斯煤报价跟涨。</p>
+      <div class="source">来源：证券时报、华泰期货、索比光伏网、中国能源网</div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);"><strong>📊 周期板块总结：</strong>7月24日周期板块遭遇全面重挫，在前期连续大涨（7月22日石化+3.23%、有色+2.90%、煤炭+2.43%包揽涨幅前三）后出现剧烈获利了结。核心矛盾：①中东地缘推升油价（布油破100美元）利好石油石化但难以对冲整体板块抛压；②全球资源民族主义升温中长期利好资源品价格中枢上移，但短期资金面恶化（有色净流出83.51亿）；③"反内卷"政策预期为化工供给侧改革提供催化剂，但市场情绪切换下难以独立走强。周期板块中报业绩确定性高（有色预喜率90%+、化工约70%），调整后可关注优质龙头左侧布局机会。</p>
+  </div>
+</div>
+
+<!-- 消费板块 -->
+<h3 style="font-family:var(--font-heading);font-size:18px;color:#c62828;margin:20px 0 12px;padding:8px 16px;background:#ffebee;border-radius:var(--radius-sm);">
+  🛒 消费板块（食品饮料 · 医药 · 家电 · 汽车 · 消费者服务 · 商贸零售 · 农林牧渔 · 纺织服装 · 轻工）
+</h3>
+<div class="industry-section">
+  <div class="industry-header consumer" onclick="toggleIndustry(this)">
+    <span><i class="fa-solid fa-cart-shopping"></i> 消费板块 — 家电 -0.92% | 食饮 -1.01% | 医药 -3.52% | 汽车 -2.08% | 消费者服务 -3.28%</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div class="industry-content">
+    <div class="news-card" style="border-left-color:#c62828;">
+      <span class="tag" style="background:#ffebee;color:#c62828;">政策利好</span><span class="time">2026-07-24</span>
+      <h4>商务部：消费市场进入"商品+服务"并重阶段，服务零售额+5.3%引领消费升级</h4>
+      <p>商务部消费促进司负责人介绍2026年上半年消费市场情况：社会消费商品和服务零售总额增长2.7%，其中服务零售额增长5.3%（高于商品零售4.2个百分点）。商务部副部长鄢东表示"服务消费既是当前提振消费的压舱石，更是未来消费增长的主引擎"。国务院已批复《扩大消费"十五五"规划》，为国内首份消费领域国家级顶层规划。上半年新能源汽车出口3606.8亿元（+68.7%），家电以旧换新累计超6326.6万台，离境退税2.0版政策激发入境消费活力，上半年办理退税境外旅客人数同比增长约4倍。商务部表示后续将出台政策措施推动商品消费规模扩大、结构升级。</p>
+      <div class="source">来源：商务部、中国新闻网、证券日报、人民网</div>
+    </div>
+    <div class="news-card" style="border-left-color:#c62828;">
+      <span class="tag" style="background:#ffebee;color:#c62828;">汽车</span><span class="time">2026-07-24</span>
+      <h4>上半年中国新能源车出口大涨68.7%！汽车出口6358亿元+48.3%，销往全球210个国家</h4>
+      <p>海关数据显示，2026年上半年我国汽车出口6358.2亿元（同比+48.3%），产品销往全球210多个国家和地区。新能源汽车出口金额达3606.8亿元（同比+68.7%），持续成为外贸出口重要增长动能。商务部表示将全链条促进汽车消费，深入推进汽车流通消费改革试点。研究机构表示智能化和出海成为长期投资主题，中国乘用车及新能源车出口总量有望超预期，国际油价上涨将进一步催化新能源车竞争优势。拓邦股份表示新能源汽车行业在技术迭代、车型及客户拓展方面仍有增量机会。</p>
+      <div class="source">来源：央视新闻、每日经济新闻、农视网</div>
+    </div>
+    <div class="news-card" style="border-left-color:#c62828;">
+      <span class="tag" style="background:#ffebee;color:#c62828;">食品饮料</span><span class="time">2026-07-24</span>
+      <h4>食品饮料基金持仓再创新低：主动权益基金配置比例降至1.49%，连续9季下行，底部布局窗口开启</h4>
+      <p>开源证券统计显示，2026Q2主动权益基金食品饮料配置比例由Q1的4.0%骤降至1.5%（国泰海通口径1.49%），连续9个季度下行，处于2020年以来新低。当前CS食品饮指数市净率仅3.46倍，处于近十年1.81%分位。白酒板块茅台二次提价验证品牌定价权，板块触底趋势明显。大众品呈现分化——乳制品、功能性饮料、休闲零食等赛道健康化品牌化趋势持续。预计Q3科技板块超额收益后部分资金有换仓需求，食品饮料配置比例有望环比改善。食品饮料ETF天弘（159736）近5日获资金净流入。消费ETF（159928）今年以来-15.39%，估值历史低位。</p>
+      <div class="source">来源：开源证券、国泰海通、天风证券</div>
+    </div>
+    <div class="news-card" style="border-left-color:#c62828;">
+      <span class="tag" style="background:#ffebee;color:#c62828;">医药</span><span class="time">2026-07-24</span>
+      <h4>广州发布生物医药金融支持12条，广药集团发布"12368"科技创新战略，脑机接口催化医药科技</h4>
+      <p>广州市发布《金融支持生物医药产业发展若干措施》，推出12条举措聚焦全产业链——强化信贷保险支持、建立"穗科保"产品目录、提供全生命周期"金融+"综合服务。广药集团发布"12368"科技创新战略，涵盖中医药、化学药、生物药、核医药、动物保健、医疗器械、合成生物及高端营养八大创新平台。脑机接口技术重大突破（跨地域上千人同步脑电采集）为神经医学和AI健康领域打开新想象空间。港股通生物科技ETF（159102）涨0.13%，医药ETF（512120）近10日净流入率15.71%。</p>
+      <div class="source">来源：证券日报、每日经济新闻</div>
+    </div>
+    <div class="news-card" style="border-left-color:#c62828;">
+      <span class="tag" style="background:#ffebee;color:#c62828;">家电/高温</span><span class="time">2026-07-24</span>
+      <h4>极端高温催生空调销售旺季，家电以旧换新政策持续发力，智能家居加速渗透</h4>
+      <p>2026年盛夏超长三伏叠加持续性极端高温，全国超四十万平方公里国土被35℃以上高温覆盖，多地气温突破40℃刷新历史极值。空调、冰箱等传统白电迎来销售高峰，车载制冷、便携风扇等细分品类快速崛起。商务部数据，1-6月家电以旧换新累计超6326.6万台。便利店、超市零售额同比分别增长6.6%、3.8%，仓储会员店、无人值守商店增速超25%。消费ETF（159928）和家电板块在高温催化下展现出一定防御属性。</p>
+      <div class="source">来源：中国网财经、人民网</div>
+    </div>
+    <div class="news-card" style="border-left-color:#c62828;">
+      <span class="tag" style="background:#ffebee;color:#c62828;">全民健身</span><span class="time">2026-07-24</span>
+      <h4>国务院印发《全民健身计划（2026-2030年）》，体育消费市场迎来政策催化</h4>
+      <p>国务院印发《全民健身计划（2026-2030年）》，目标到2030年人均体育场地面积达4平方米左右，每千人拥有社会体育指导员3.3名，经常参加体育锻炼人数比例达40%左右。政策将推动体育用品、健身服务、运动装备等产业链发展，为消费板块增添新增长极。</p>
+      <div class="source">来源：金融界</div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);"><strong>📊 消费板块总结：</strong>7月24日消费板块整体承压但不失韧性——家电（-0.92%）和食品饮料（-1.01%）在弱势中相对抗跌，医药（-3.52%）和消费者服务（-3.28%）跌幅较大。消费板块面临"基本面磨底+基金持仓冰点+政策催化升温"的三重格局：①《扩大消费"十五五"规划》为首份消费国家级顶层规划，政策层级前所未有；②食品饮料主动权益仓位降至1.49%的历史极低水平，筹码结构极佳；③新能源汽车出口+68.7%展现中国制造全球竞争力；④极端高温催生家电旺季需求。消费板块估值和持仓均处于历史低位，中长期左侧布局窗口已打开。</p>
+  </div>
+</div>
+
+<!-- 制造与公用 -->
+<h3 style="font-family:var(--font-heading);font-size:18px;color:#2e7d32;margin:20px 0 12px;padding:8px 16px;background:#e8f5e9;border-radius:var(--radius-sm);">
+  🏭 制造与公用事业（电力设备新能源 · 国防军工 · 机械 · 电力公用 · 建筑 · 房地产 · 交通运输）
+</h3>
+<div class="industry-section">
+  <div class="industry-header manufacturing" onclick="toggleIndustry(this)">
+    <span><i class="fa-solid fa-industry"></i> 制造与公用 — 国防军工 -1.99% | 机械 -2.05% | 电新 -2.60% | 电力公用 -2.91% | 建筑 -2.00% | 房地产 -2.77%</span>
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+  <div class="industry-content">
+    <div class="news-card" style="border-left-color:#2e7d32;">
+      <span class="tag" style="background:#e8f5e9;color:#2e7d32;">电力及公用事业</span><span class="time">2026-07-24</span>
+      <h4>电力公用板块跌2.91%，"十五五"可再生能源规划印发：2030年消费总量达18亿吨标准煤</h4>
+      <p>国家发改委、国家能源局联合印发《可再生能源发展"十五五"规划》，提出"十五五"时期可再生能源将进入扩量提质、可靠替代的新发展阶段，到2030年可再生能源消费总量达到18亿吨标准煤左右。全国发电装机突破40亿千瓦（太阳能12.7亿千瓦+15.8%、风电6.8亿千瓦+18.5%）。夏季用电高峰叠加AI算力用电需求爆发（2030年算力用电将达8000亿度/年），电力公用事业的中长期防御价值依然突出。国家发改委启动钢铁、电解铝、水泥等重点行业节能降碳改造攻坚三年行动。前日电网设备板块掀涨停潮，但今日走势分化。</p>
+      <div class="source">来源：华泰期货、国家能源局</div>
+    </div>
+    <div class="news-card" style="border-left-color:#2e7d32;">
+      <span class="tag" style="background:#e8f5e9;color:#2e7d32;">电新/储能</span><span class="time">2026-07-24</span>
+      <h4>电新板块跌2.60%：光伏供给出清加速，储能全球需求爆发，碳酸锂主力合约涨超4%</h4>
+      <p>电力设备及新能源板块7月24日下跌2.60%。产业链基本面持续改善：<strong>【光伏】</strong>供给出清进入实质性阶段——《硅多晶和锗单位产品能源消耗限额》强制性国标收紧，近半数现有产能面临不达标压力。隆鑫钢铁14MW光伏项目采用N型高效组件，光伏N型技术迭代加速。<strong>【储能】</strong>东吴证券预计2026年全球储能装机588.2GWh（+62%），Q1全球储能系统出货中国企业占82%。<strong>【锂电池】</strong>碳酸锂主力合约7月23日盘中涨超4%站上14.7万元/吨，6月动力电池装车量76.5GWh（+31%），国金证券预计2026年全球锂电池需求2629GWh（+28%）、储能电池795GWh（+47%）。新能源车ETF（516660）近5日上涨2.42%。</p>
+      <div class="source">来源：东吴证券、国金证券、国家能源局、索比光伏网</div>
+    </div>
+    <div class="news-card" style="border-left-color:#2e7d32;">
+      <span class="tag" style="background:#e8f5e9;color:#2e7d32;">国防军工</span><span class="time">2026-07-24</span>
+      <h4>国防军工跌1.99%相对抗跌，美军对伊朗发动新一轮打击催化地缘预期</h4>
+      <p>国防军工板块7月24日跌1.99%，在中信一级行业中表现相对靠前。美军中央司令部7月23日开始针对伊朗军事目标的新一轮打击，胡塞武装威胁红海航运，全球地缘政治风险持续升温。国内方面，"十五五"装备采购放量和军贸出口扩大为板块中期提供基本面支撑。船舶方面VLCC船价维持1.29亿美元高位。兴业证券统计26Q2主动基金军工超配比例-1.42%创近十年新低，筹码结构处于历史极值，后续"十五五"规划落地有望为板块提供系统性催化。</p>
+      <div class="source">来源：金十数据、兴业证券</div>
+    </div>
+    <div class="news-card" style="border-left-color:#2e7d32;">
+      <span class="tag" style="background:#e8f5e9;color:#2e7d32;">低空经济</span><span class="time">2026-07-24</span>
+      <h4>2026低空经济国际投融资与出海专题研讨会今日在上海举行，上海推动科创板低空经济上市</h4>
+      <p>"2026低空经济国际投融资与出海专题研讨会"7月24日在上海国家会展中心举行，主题为"资本赋能全球启航——低空经济投融资与出海新路径"。上海出台科技金融20条明确推动科创板低空经济企业适用第五套标准上市审核指引，低空经济产业资本化进程加速。此前2026国际低空经济博览会（7月22日开幕）23项全球首发覆盖eVTOL整机、核心航电等全产业链，低空经济正从概念走向商业化落地。</p>
+      <div class="source">来源：东方财富研究中心、澎湃新闻</div>
+    </div>
+    <div class="news-card" style="border-left-color:#2e7d32;">
+      <span class="tag" style="background:#e8f5e9;color:#2e7d32;">机械/机器人</span><span class="time">2026-07-24</span>
+      <h4>机械板块跌2.05%：建筑机器人技术大会今日在京举办，"具身赋能，智建未来"</h4>
+      <p>2026第八届建筑机器人技术大会暨智能建造与建筑机器人大会7月24-26日在北京举办，主题为"具身赋能，智建未来"。机械板块短期承压但智能制造方向仍在加速：人形机器人产业化提速、工业母机持续吸金、工程机械出口增长（湖南前5月+20.1%）。机械板块成交额1317亿元在弱势中保持活跃，中长期受益于AI+制造深度融合趋势。</p>
+      <div class="source">来源：东方财富研究中心、证券日报</div>
+    </div>
+    <div class="news-card" style="border-left-color:#2e7d32;">
+      <span class="tag" style="background:#e8f5e9;color:#2e7d32;">房地产</span><span class="time">2026-07-24</span>
+      <h4>房地产板块跌2.77%，政治局会议前政策预期升温，广州拟推现房销售制</h4>
+      <p>房地产板块7月24日跌2.77%。政策端持续发力——广州发布住房发展"十五五"规划征求意见稿，提出综合施策消化存量商品房库存、有序推进现房销售制。一线城市房价环比连续4个月上涨释放积极信号。市场密切关注7月底政治局会议是否会释放进一步地产支持政策信号。财新网指出"房地产政策仍待释放"，当前行业仍处筑底阶段但部分优质央企房企估值已具备安全边际。</p>
+      <div class="source">来源：财新网、经济日报</div>
+    </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-secondary);"><strong>📊 制造与公用事业板块总结：</strong>7月24日该板块组整体承压，国防军工（-1.99%）和机械（-2.05%）相对抗跌，电力及公用事业（-2.91%）跌幅较大。核心主线：①"十五五"可再生能源规划锚定2030年18亿吨标准煤目标，新能源中长期政策框架清晰；②光伏供给出清进入实质性阶段（近半数产能面临淘汰）+储能全球需求爆发（2026年+62%），电新产业底部特征渐显；③低空经济+建筑机器人等新兴方向获政策重点支持；④中东地缘升级为军工提供持续催化剂。该板块细分赛道众多、景气度分化明显，建议聚焦政策确定性强的子领域（储能、电网设备、军工电子、低空经济），等待调整后的布局时机。</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ SECTION 5: 海外市场 ============ -->
+<section id="overseas">
+<h2 class="section-title"><i class="fa-solid fa-globe"></i> 五、海外市场概览</h2>
+
+<div class="three-col">
+  <div class="overseas-card">
+    <h3>🇭🇰 港股市场（7月24日）</h3>
+    <div class="idx-row"><span>恒生指数</span><span style="color:var(--down-color);font-weight:600;">▼ -1.06%</span></div>
+    <div class="idx-row"><span>恒生科技指数</span><span style="color:var(--down-color);font-weight:600;">▼ -1.47%</span></div>
+    <div class="idx-row"><span>恒生国企指数</span><span style="color:var(--down-color);font-weight:600;">▼ -1.03%</span></div>
+    <div class="idx-row"><span>南向资金持股</span><span>19.66%（259只持股超20%）</span></div>
+    <div class="idx-row"><span>香港银行股</span><span style="color:var(--up-color);">逆市走强（加息预期）</span></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">港股三大指数齐跌，恒生科技跌幅最大。但香港银行股逆市大涨（大新银行+6.94%、东亚银行+6.74%），受美联储加息预期升温推动净息差扩大预期。南向资金维持高比例持股，内资对港股低估值标的持续配置。</p>
+  </div>
+  <div class="overseas-card">
+    <h3>🇺🇸 美股市场（7月23日隔夜）</h3>
+    <div class="idx-row"><span>道琼斯工业</span><span style="color:var(--down-color);font-weight:600;">51,711.65 ▼ -0.97%</span></div>
+    <div class="idx-row"><span>标普500</span><span style="color:var(--down-color);font-weight:600;">7,408.30 ▼ -1.21%</span></div>
+    <div class="idx-row"><span>纳斯达克</span><span style="color:var(--down-color);font-weight:600;">25,137.69 ▼ -2.15%</span></div>
+    <div class="idx-row"><span>特斯拉</span><span style="color:var(--down-color);">暴跌超14%（Q2 EPS不及预期）</span></div>
+    <div class="idx-row"><span>WTI原油</span><span style="color:var(--up-color);">高位运行，布油破100美元</span></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">美股三大指数集体收跌，科技股领跌。特斯拉Q2 EPS仅0.33美元（低于预期0.51美元），盘后一度跌超5%。美国对60个经济体加征10%-12.5%新关税7月24日生效。欧洲央行维持利率不变但为9月加息保留空间。</p>
+  </div>
+  <div class="overseas-card">
+    <h3>🇯🇵🇰🇷 亚太市场（7月23日）</h3>
+    <div class="idx-row"><span>日经225</span><span style="color:var(--up-color);font-weight:600;">▲ +0.46%</span></div>
+    <div class="idx-row"><span>韩国综合指数</span><span style="color:var(--up-color);font-weight:600;">▲ +4.40%（强劲反弹）</span></div>
+    <div class="idx-row"><span>日本政策</span><span style="font-size:12px;">「骨太方针」持续推进</span></div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">日经225小幅收涨，日本高市政府持续推进「骨太方针」（17个战略领域累计投资超370万亿日元）。韩国综合指数大涨4.40%出现强劲技术性反弹，此前受加息和杠杆ETF监管收紧冲击的SK海力士等半导体股大幅修复。</p>
+  </div>
+</div>
+
+<h3 style="font-family:var(--font-heading);font-size:16px;color:#00838f;margin:20px 0 12px;padding:8px 16px;background:#e0f7fa;border-radius:var(--radius-sm);">
+  🔬 海外科技板块焦点
+</h3>
+
+<div class="news-card overseas">
+  <span class="tag"><i class="fa-solid fa-microchip"></i> 芯片/半导体</span><span class="time">2026-07-23（隔夜）</span>
+  <h4>费城半导体指数隔夜重挫，特斯拉暴跌超14%引发科技股恐慌，但AMD称AI加速器市场2030年达1.4万亿美元</h4>
+  <p>7月23日美股科技板块大幅调整，纳斯达克指数大跌2.15%领跌三大指数。特斯拉因Q2财报EPS大幅不及预期（0.33 vs预估0.51美元）暴跌超14%，拖累整个科技板块情绪。但AMD在投资者会议上表示Helios已全面投产，预计到2030年人工智能加速器市场将达到1.4万亿美元，中长期产业前景依然乐观。科技七巨头多数收跌——微软、Meta、亚马逊均跌超1%，英伟达跌幅相对有限。美股芯片板块在经历前一日费城半导体指数暴涨5.21%后今日回调，存储芯片股回吐部分涨幅。</p>
+  <div class="source">来源：金十数据、中国证券报、CNBC</div>
+</div>
+
+<div class="news-card overseas">
+  <span class="tag"><i class="fa-solid fa-cloud"></i> 科技巨头</span><span class="time">2026-07-24</span>
+  <h4>谷歌未来支出承诺飙升至8110亿美元（三个月暴增近5000亿），AI军备竞赛持续升温</h4>
+  <p>谷歌母公司Alphabet的资本支出承诺在三个月内从约3000亿美元飙升至8110亿美元，反映AI基础设施建设的加速投入。Q2 Google Cloud收入同比+82%至248亿美元。北美四大云厂商2026年资本开支预计大增超70%，光通信、AI芯片等底层硬件环节供需格局持续紧张。中金公司认为云计算与AI算力资本开支已成为当前市场最核心的结构性主线。AMD Helios全面投产进一步印证AI算力高景气。</p>
+  <div class="source">来源：金十数据、中金公司、每日经济新闻</div>
+</div>
+
+<div class="news-card overseas">
+  <span class="tag"><i class="fa-solid fa-globe"></i> 中概/关税</span><span class="time">2026-07-24</span>
+  <h4>美国新关税7月24日正式生效（60个经济体10%-12.5%），中美探讨300亿美元对等降税框架</h4>
+  <p>美国对60个经济体加征10%-12.5%新关税7月24日正式生效，以替代即将到期的全球进口关税。与此同时，中美经贸团队正探讨各自300亿美元规模对等降税框架安排，双方正在征求意见阶段。外交部表示中方一贯反对将科技经贸问题政治化、工具化。上海出台科技金融20条，推动科创板持续深化改革。纳斯达克中国金龙指数隔夜承压，中美贸易关系博弈继续影响中概股和全球科技供应链预期。</p>
+  <div class="source">来源：金融界、证券时报、金十数据</div>
+</div>
+
+<div class="news-card overseas" style="margin-top:16px;">
+  <span class="tag"><i class="fa-solid fa-globe"></i> 全球宏观</span><span class="time">2026-07-24</span>
+  <h4>全球宏观博弈：美伊冲突+贸易关税+欧洲央行按兵不动，不确定性持续升温</h4>
+  <p>外围市场宏观方面：①特朗普表示正"认真考虑"重启对伊朗大规模作战行动，全球地缘政治风险急剧升温；②美国对60个经济体加征新关税今日生效，全球贸易摩擦加剧；③欧洲央行维持三大利率不变符合预期，但为9月加息保留空间；④布油突破100美元、美债收益率升至年内最高水平，市场预期美联储最快下周加息（概率约31%）；⑤中美对等降税框架推进为经贸关系改善留下窗口。国内方面，7月底政治局会议临近，多家券商研判三季度为降准降息重要窗口期，8000亿元新型政策性金融工具有望加快落地。</p>
+  <div class="source">来源：金十数据、东海证券、申银万国期货、中国银河</div>
+</div>
+</section>
+
+<!-- ============ SECTION 6: 重点推荐 ============ -->
+<section id="recommend">
+<h2 class="section-title"><i class="fa-solid fa-star"></i> 六、重点推荐板块、基金及个股</h2>
+
+<h3 style="font-family:var(--font-heading);font-size:16px;color:var(--bg-header);margin-bottom:12px;">📊 推荐关注板块</h3>
+<div class="news-card" style="border-left-color:#1565c0;">
+  <span class="tag" style="background:#e3f2fd;color:#1565c0;">🏦 首推</span>
+  <h4>银行板块 — 「资金面拐点确立 + 估值历史低位 + 高股息防御 + 增持潮信心提振」四重驱动</h4>
+  <p>核心逻辑：①资金面拐点已确立——沪深300ETF减仓压力基本出清，主动基金仓位降至历史新低（低配19.8pct），近1周ETF净流入84.76亿元扭转年初以来流出局面；②42家银行全部破净（PB 0.27-0.92x），平均股息率约4.5%（较10年国债溢价275bp），估值处于近十年低位；③高管/股东密集增持——南京银行（江苏交控1.22亿股+1亿下限承诺）、中国银行（151个回购计划）、中信银行（200亿+储备项目）；④H1业绩确定改善（预计营收+7.0%、净利+2.7%），息差筑底企稳，国有大行表现亮眼；⑤风格再平衡背景下科技流出资金有望持续流入银行等红利板块。风险提示：经济超预期下行、资产质量恶化。</p>
+</div>
+<div class="news-card" style="border-left-color:#7b1fa2;">
+  <span class="tag" style="background:#f3e5f5;color:#7b1fa2;">💡 关注</span>
+  <h4>半导体/电子 — 「产业景气度验证 + 中报业绩高增 + 国产替代加速 + 回调后性价比回升」</h4>
+  <p>核心逻辑：全球半导体5月销售额1206亿美元（同比+104%），中报业绩高增（普冉+1925%、多家设备公司大增）。谷歌资本开支暴增至8110亿美元+PCB龙头百亿扩产验证AI硬件高景气。长鑫科技科创板上市在即催化国产替代行情。当前板块从高点回调后性价比回升，关注半导体设备、AI芯片、存储等业绩确定性强的细分方向。</p>
+</div>
+<div class="news-card" style="border-left-color:#e65100;">
+  <span class="tag" style="background:#fff3e0;color:#e65100;">⛏️ 关注</span>
+  <h4>石油石化 — 「地缘溢价 + 供给约束 + 中报业绩爆发 + 红利属性重估」</h4>
+  <p>核心逻辑：中东地缘急剧升级（美军空袭伊朗+胡塞威胁红海），布油突破100美元。OPEC+8月拟小幅增产但供给增量有限。炼化龙头H1业绩爆发（恒逸石化+23倍），化工"反内卷"政策提供中期催化。石油石化板块正从传统周期股向"资源+红利"属性重估。关注中国海油、中国石化等高股息标的。</p>
+</div>
+
+<div class="fund-highlight" style="margin-top:24px;">
+  <h3 style="font-size:18px;margin-bottom:4px;"><i class="fa-solid fa-piggy-bank"></i> ⭐ 重点推荐基金（核心区域）</h3>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;">以下基金基于7月24日市场数据和近期表现精选，按投资风格分为六大类别。用户以基金投资为主，此部分为全报告核心推荐区域。</p>
+
+  <h4 style="font-family:var(--font-heading);font-size:14px;color:#2e7d32;margin:16px 0 8px;">📊 宽基指数ETF — 底仓配置首选</h4>
+  <table class="fund-table">
+  <thead><tr><th>基金名称</th><th>代码</th><th>7/24涨跌</th><th>近1周</th><th>近3月</th><th>今年以来</th><th>推荐</th></tr></thead>
+  <tbody>
+  <tr><td class="fund-name">华泰柏瑞沪深300ETF</td><td>510300</td><td class="down">-1.80%</td><td class="up">+0.73%</td><td class="down">-0.36%</td><td class="up">+3.23%</td><td>⭐⭐⭐</td></tr>
+  <tr style="background:#fff8e1;"><td class="fund-name">华夏科创50ETF</td><td>588000</td><td class="down">-0.16%</td><td class="down">-3.10%</td><td class="up">+25.01%</td><td class="up">+33.34%</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">易方达创业板ETF</td><td>159915</td><td class="down">-2.47%</td><td class="down">-3.09%</td><td class="down">-3.37%</td><td class="up">+12.89%</td><td>⭐⭐⭐</td></tr>
+  </tbody>
+  </table>
+
+  <h4 style="font-family:var(--font-heading);font-size:14px;color:#1565c0;margin:16px 0 8px;">🏦 金融与红利ETF — 防御底仓 + 风格再平衡受益</h4>
+  <table class="fund-table">
+  <thead><tr><th>基金名称</th><th>代码</th><th>7/24涨跌</th><th>近1周</th><th>近3月</th><th>今年以来</th><th>推荐</th></tr></thead>
+  <tbody>
+  <tr style="background:#fff8e1;"><td class="fund-name">华宝中证银行ETF</td><td>512800</td><td class="up">+0.12%</td><td class="up">+2.63%</td><td class="down">-0.11%</td><td class="down">-2.43%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr style="background:#fff8e1;"><td class="fund-name">华泰柏瑞红利ETF</td><td>510880</td><td class="down">-1.74%</td><td class="up">+4.33%</td><td class="down">-0.12%</td><td class="up">+8.07%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">证券保险ETF易方达</td><td>512070</td><td class="down">-1.46%</td><td>净流入</td><td>—</td><td>—</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">国泰中证证券ETF</td><td>512880</td><td class="down">-2.57%</td><td class="up">+1.40%</td><td class="up">+5.83%</td><td class="down">-6.95%</td><td>⭐⭐⭐</td></tr>
+  </tbody>
+  </table>
+
+  <h4 style="font-family:var(--font-heading);font-size:14px;color:#7b1fa2;margin:16px 0 8px;">💻 科技成长ETF — 长期成长主线，逢低布局</h4>
+  <table class="fund-table">
+  <thead><tr><th>基金名称</th><th>代码</th><th>7/24涨跌</th><th>近1月</th><th>近3月</th><th>今年以来</th><th>推荐</th></tr></thead>
+  <tbody>
+  <tr style="background:#fff8e1;"><td class="fund-name">华夏科创50ETF</td><td>588000</td><td class="down">-0.16%</td><td class="down">-3.10%</td><td class="up">+25.01%</td><td class="up">+33.34%</td><td>⭐⭐⭐⭐⭐</td></tr>
+  <tr style="background:#fff8e1;"><td class="fund-name">通信ETF华夏</td><td>515050</td><td class="down">-1.99%</td><td>高位回调>25%</td><td>规模195亿</td><td>—</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">电子50ETF</td><td>515320</td><td>—</td><td>近10日净流入</td><td>PCB含量21%</td><td>—</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">招商TMT50ETF</td><td>159909</td><td class="down">-2.37%</td><td class="down">-13.23%</td><td>—</td><td>—</td><td>⭐⭐⭐</td></tr>
+  </tbody>
+  </table>
+
+  <h4 style="font-family:var(--font-heading);font-size:14px;color:#e65100;margin:16px 0 8px;">⛏️ 周期资源ETF — 地缘避险 + 中报业绩驱动</h4>
+  <table class="fund-table">
+  <thead><tr><th>基金名称</th><th>代码</th><th>7/24涨跌</th><th>近期表现</th><th>推荐</th></tr></thead>
+  <tbody>
+  <tr style="background:#fff8e1;"><td class="fund-name">石油ETF鹏华</td><td>159697</td><td class="up">+1.24%</td><td>冲击3连涨，中东地缘催化</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">南方有色金属ETF</td><td>512400</td><td>—</td><td>近5日+5.66%（调整后布局）</td><td>⭐⭐⭐</td></tr>
+  </tbody>
+  </table>
+
+  <h4 style="font-family:var(--font-heading);font-size:14px;color:#c62828;margin:16px 0 8px;">🛒 消费医药ETF — 估值底部，左侧布局</h4>
+  <table class="fund-table">
+  <thead><tr><th>基金名称</th><th>代码</th><th>7/24涨跌</th><th>近1月</th><th>近3月</th><th>今年以来</th><th>推荐</th></tr></thead>
+  <tbody>
+  <tr style="background:#fff8e1;"><td class="fund-name">汇添富消费ETF</td><td>159928</td><td class="down">-2.09%</td><td class="up">+0.98%</td><td class="down">-9.11%</td><td class="down">-15.39%</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">华宝医药ETF</td><td>512120</td><td class="down">-1.28%</td><td class="up">+12.41%(近20日)</td><td>—</td><td>—</td><td>⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">消费电子ETF易方达</td><td>562950</td><td class="down">-1.10%</td><td>AI硬件催化</td><td>—</td><td>—</td><td>⭐⭐⭐</td></tr>
+  </tbody>
+  </table>
+
+  <h4 style="font-family:var(--font-heading);font-size:14px;color:#2e7d32;margin:16px 0 8px;">🔋 新能源ETF — 超跌反弹 + 出海逻辑</h4>
+  <table class="fund-table">
+  <thead><tr><th>基金名称</th><th>代码</th><th>7/24涨跌</th><th>近期表现</th><th>推荐</th></tr></thead>
+  <tbody>
+  <tr style="background:#fff8e1;"><td class="fund-name">新能源车ETF</td><td>516660</td><td>—</td><td>近5日+2.42%，出口+68.7%催化</td><td>⭐⭐⭐⭐</td></tr>
+  <tr><td class="fund-name">创业板AI ETF华夏</td><td>159381</td><td class="down">-2.00%</td><td>AI应用端+新能源双重概念</td><td>⭐⭐⭐</td></tr>
+  </tbody>
+  </table>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+<div class="news-card" style="margin-bottom:0;">
+  <h4 style="font-size:14px;color:var(--citic-red);">💡 基金配置策略建议（2026年7月下旬）</h4>
+  <p style="font-size:13px;line-height:1.9;">
+  <strong>1. 核心底仓（35%）：</strong>银行ETF（512800）+ 沪深300ETF（510300）+ 红利ETF（510880），低估值（银行PB 0.27-0.92x全破净）+ 高股息（平均4.5%，较国债溢价275bp）+ 资金面拐点确立（近1周ETF净流入84.76亿），风格从科技向红利再平衡的核心受益方向。<br>
+  <strong>2. 科技成长（25%）：</strong>科创50ETF（588000）+ 通信ETF（515050）+ 电子50ETF（515320），AI产业趋势未改（谷歌资本开支暴增至8110亿美元、PCB龙头百亿扩产），短期回调25%+后性价比回升。建议采用「大跌大买、小跌小买」的分批建仓策略。<br>
+  <strong>3. 防御红利（20%）：</strong>红利ETF（510880）+ 证券保险ETF（512070），市场波动加大（全市场净流出779亿）+ 利率下行预期（三季度降息窗口），红利资产提供确定性回报。保险预定利率两连升改善利差损预期。<br>
+  <strong>4. 周期资源（10%）：</strong>石油ETF（159697），中东地缘溢价+供给约束+中报业绩爆发，油价中枢高位运行。有色板块调整后可关注左侧机会。<br>
+  <strong>5. 消费左侧（5%）：</strong>消费ETF（159928）+ 医药ETF（512120），食品饮料仓位降至历史极低（1.49%），十五五消费规划落地+以旧换新政策延续，左侧布局等待估值修复。<br>
+  <strong>6. 机动现金（5%）：</strong>保留灵活仓位，若政治局会议释放超预期宽松信号（降准降息）可加仓金融/地产，若科技深度调整可追加科创50ETF。
+  </p>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">📌 <strong>操作节奏建议：</strong>7月底政治局会议前保持中性仓位，政策明朗后顺势调整。短期以防御为主（银行+红利不动），中期逢科技回调分批加仓科创50/半导体方向，中长期左侧布局消费龙头等待政策催化。密切关注8月上市公司中报密集披露期业绩验证。</p>
+</div>
+<div class="news-card" style="margin-bottom:0;">
+  <h4 style="font-size:14px;color:var(--citic-red);">📌 推荐个股（辅助参考，普通投资者建议优先关注上述ETF）</h4>
+  <p style="font-size:13px;line-height:1.8;">
+  <strong>🏦 银行：</strong>工商银行（国有大行龙头，高股息超5%，东方证券重点推荐）、宁波银行（优质城商行标杆，长三角区域优势，基本面确定性强）、南京银行（江苏交控连续增持超1.22亿股，估值低位）。<br>
+  <strong>⛏️ 石油石化：</strong>中国海油（油价上行直接受益，中东地缘溢价，高股息+资源价值）。<br>
+  <strong>💻 算力/AI：</strong>中际旭创（全球光模块龙头，1.6T/3.2T前沿技术研发，回调后性价比回升）、北方华创（半导体设备龙头，国产替代核心，Q2基金增配规模前五）。<br>
+  <strong>🔬 半导体：</strong>寒武纪（国产AI芯片龙头，公募Q2前十大重仓）、中芯国际（本土晶圆代工核心，受益国产替代加速）。<br>
+  <strong>🍶 消费：</strong>贵州茅台（白酒龙头，年内二次提价，估值底部+消费政策催化，左侧布局窗口）。<br>
+  <strong style="color:var(--text-muted);">⚠️ 以上个股仅作参考，不构成投资建议。个股波动远大于基金，投资者应充分评估风险承受能力。基金定投是更稳健的选择。</strong>
+  </p>
+</div>
+</div>
+</section>
+
+</div><!-- /container -->
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <p><strong>📋 免责声明</strong></p>
+  <p>本报告仅供内部参考，不构成任何投资建议。报告中所涉及的股票、基金等金融产品的过往业绩不代表未来表现。<br>投资者应根据自身的风险承受能力和投资目标独立做出投资决策，并自行承担投资风险。</p>
+  <p style="margin-top:10px;"><strong>📊 数据来源：</strong>东方财富Choice数据 | 妙想金融终端 | Wind数据<br>
+  <strong>⏰ 生成时间：</strong>2026年7月24日 | <strong>复盘日期：</strong>2026年7月24日（周五）<br>
+  <strong>🤖 技术支持：</strong>Claude Code · 中信证券研究部 · 银行业分析师</p>
+</div>
+
+<!-- ============ BACK TO TOP ============ -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<!-- ============ SCRIPTS ============ -->
+<script>
+function toggleIndustry(header) {
+  header.classList.toggle('open');
+  const content = header.nextElementSibling;
+  content.classList.toggle('show');
+}
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-bar a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 80;
+    if (window.pageYOffset >= sectionTop) current = section.getAttribute('id');
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+  });
+  const btn = document.getElementById('backToTop');
+  if (window.pageYOffset > 500) btn.classList.add('visible');
+  else btn.classList.remove('visible');
+});
+document.querySelectorAll('.nav-bar a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+document.querySelectorAll('.industry-header').forEach(h => {
+  h.classList.add('open');
+  h.nextElementSibling.classList.add('show');
+});
+</script>
+</body>
+</html>
